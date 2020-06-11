@@ -1,1 +1,11 @@
 This file will be used to plan out the pointer project. 
+Features:
+users are able to review anything they want, from experience, locations, food, films, etc.
+We will be using the AWS Amplify Framework as the development platform for building the web application
+FrontEnd:
+Angular 
+BackEnd:
+use amazon cognito user pool to create user login
+Will use Lambda everytime a user adds a new rating, edits rating, etc
+Doing this will invoke the amazon dynamodb, where we store the individuals ratings and a home page with other people ratings
+
