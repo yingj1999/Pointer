@@ -4,11 +4,15 @@ import { AmplifyAngularModule, AmplifyService } from '@flowaccount/aws-amplify-a
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ListComponent } from './list/list.component';
+import { AuthComponent } from './auth/auth.component';
+import { ProfileComponent } from './profile/profile.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ListComponent,
+    AuthComponent,
+    ProfileComponent,
   ],
   imports: [
     BrowserModule,
