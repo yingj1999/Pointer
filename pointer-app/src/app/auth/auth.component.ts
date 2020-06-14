@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {
   AmplifyService
-} from 'aws-amplify-angular';
+} from '@flowaccount/aws-amplify-angular';
 import {
   Router
 } from '@angular/router';
@@ -12,9 +12,21 @@ import {
 })
 export class AuthComponent implements OnInit {
 
-  constructor() { }
+  constructor(public amplifyService: AmplifyService, public router: Router) {
+    this.amplifyService = amplifyService;
+    this.amplifyService.authStateChange$
+      .subscribe(authState => {
+        if (authState.state === 'signedIn') {
+          this.router.navigate(['/profile']);
+        }
+        else if (authState.state === 'signedOut') {
+          this.router.navigate(['/login']);
+        }
+      });
+}
 
   ngOnInit(): void {
+    
   }
 
 }

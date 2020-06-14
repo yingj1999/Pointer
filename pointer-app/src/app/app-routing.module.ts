@@ -13,8 +13,13 @@ const routes: Routes = [{
   component: AuthComponent
 },
 {
+  path: '',
+  redirectTo: '/login',
+  pathMatch: 'full'
+},
+{
   path: '**',
-  redirectTo: 'login',
+  redirectTo: '/login',
   pathMatch: 'full'
 }];
 
