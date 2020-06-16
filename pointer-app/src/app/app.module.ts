@@ -7,6 +7,9 @@ import { ListComponent } from './list/list.component';
 import { AuthComponent } from './auth/auth.component';
 import { ProfileComponent } from './profile/profile.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { PopupComponent } from './popup/popup.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MaterialModule } from './material.module';
 
 @NgModule({
   declarations: [
@@ -14,12 +17,16 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     ListComponent,
     AuthComponent,
     ProfileComponent,
+    PopupComponent,
+  ],
+  entryComponents: [
+    PopupComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     AmplifyAngularModule,
-    FormsModule, ReactiveFormsModule
+    FormsModule, ReactiveFormsModule, BrowserAnimationsModule,MaterialModule
   ],
   providers: [AmplifyService],
   bootstrap: [AppComponent]

@@ -1641,7 +1641,7 @@ label {
     margin: 0 0 1em 0;
 }
 select[name="countryCode"] option{
-    background: rgba(0, 0, 0, 0.3);
+    background: #636363;
     color: #fff;
 }
 input[name="field.key"],
@@ -2686,3 +2686,5 @@ body.is-covered #wrapper {
         }
 
     }
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
