@@ -1640,7 +1640,11 @@ label {
     font-weight: 200;
     margin: 0 0 1em 0;
 }
-
+select[name="countryCode"] option{
+    background: rgba(0, 0, 0, 0.3);
+    color: #fff;
+}
+input[name="field.key"],
 input[type="text"],
 input[type="password"],
 input[type="email"],
@@ -1662,7 +1666,7 @@ textarea {
     text-decoration: none;
     width: 100%;
 }
-
+    input[name="field.key"]:invalid,
     input[type="text"]:invalid,
     input[type="password"]:invalid,
     input[type="email"]:invalid,
@@ -1671,7 +1675,7 @@ textarea {
     textarea:invalid {
         box-shadow: none;
     }
-
+    input[name="field.key"]:focus,
     input[type="text"]:focus,
     input[type="password"]:focus,
     input[type="email"]:focus,
@@ -1714,7 +1718,7 @@ textarea {
     .select-wrapper select::-ms-expand {
         display: none;
     }
-
+input[name="field.key"],
 input[type="text"],
 input[type="password"],
 input[type="email"],
@@ -2192,12 +2196,10 @@ table {
         }
 
 /* Button */
-
-input[type="submit"],
-input[type="reset"],
-input[type="button"],
-button,
-.button {
+div[class="amplify-greeting-text"]{
+    display: none;
+}
+a[data-test="sign-out-button"]{
     -moz-appearance: none;
     -webkit-appearance: none;
     -ms-appearance: none;
@@ -2206,7 +2208,12 @@ button,
     -webkit-transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
     -ms-transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
     transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
-    background-color: #FF6382;
+    background-color: Transparent;
+    background-repeat:no-repeat;
+    border: solid;
+    cursor:pointer;
+    overflow: hidden;
+    outline:none;
     border-radius: 4px;
     border: 0;
     color: white!important;
@@ -2220,23 +2227,64 @@ button,
     text-decoration: none;
     white-space: nowrap;
 }
-
+input[type="submit"],
+input[type="reset"],
+input[type="button"],
+button,
+.button {
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    -ms-appearance: none;
+    appearance: none;
+    -moz-transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+    -webkit-transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+    -ms-transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+    transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+    background-color: #8a8987;
+    background-repeat:no-repeat;
+    border: 0;
+    cursor:pointer;
+    overflow: hidden;
+    outline:none;
+    border-radius: 4px;
+    color: white!important;
+    cursor: pointer;
+    display: inline-block;
+    font-weight: 200;
+    height: 2.85em;
+    line-height: 2.95em;
+    padding: 0 1.5em;
+    text-align: center;
+    text-decoration: none;
+    white-space: nowrap;
+}
+a[data-test="sign-out-button"]{
+    position: absolute;
+    right: 80px;
+    top: 10px;
+  }
+a[data-test="sign-out-button"]:hover,
     input[type="submit"]:hover,
     input[type="reset"]:hover,
     input[type="button"]:hover,
     button:hover,
     .button:hover {
-        background-color: #ff7c96;
+        background-color: rgb(145, 133, 136);;
     }
-
+    a[data-test="sign-out-button"]:active,
     input[type="submit"]:active,
     input[type="reset"]:active,
     input[type="button"]:active,
     button:active,
     .button:active {
-        background-color: #ff496e;
+        background-color: Transparent;
+    background-repeat:no-repeat;
+    border: none;
+    cursor:pointer;
+    overflow: hidden;
+    outline:none;
     }
-
+    a[data-test="sign-out-button"].icon,
     input[type="submit"].icon,
     input[type="reset"].icon,
     input[type="button"].icon,
@@ -2244,7 +2292,7 @@ button,
     .button.icon {
         padding-left: 1.35em;
     }
-
+    a[data-test="sign-out-button"].icon:before,
         input[type="submit"].icon:before,
         input[type="reset"].icon:before,
         input[type="button"].icon:before,
@@ -2252,7 +2300,6 @@ button,
         .button.icon:before {
             margin-right: 0.5em;
         }
-
     input[type="submit"].fit,
     input[type="reset"].fit,
     input[type="button"].fit,
@@ -2262,7 +2309,6 @@ button,
         margin: 0 0 1em 0;
         width: 100%;
     }
-
     input[type="submit"].small,
     input[type="reset"].small,
     input[type="button"].small,
@@ -2321,7 +2367,7 @@ button,
         background-color: #FF6382;
         color: blue;
     }
-
+    a[data-test="sign-out-button"].special.hover,
         input[type="submit"].special:hover,
         input[type="reset"].special:hover,
         input[type="button"].special:hover,
