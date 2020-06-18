@@ -1,6 +1,6 @@
 import { Component, OnInit,Inject } from '@angular/core';
 
-import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
+import {MatDialog, MatDialogConfig, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import {PopupComponent} from '../popup/popup.component'
 import {
   Auth
@@ -17,9 +17,10 @@ export class ProfileComponent implements OnInit {
   email: string;
   constructor(private router: Router,public dialog: MatDialog) { }
   openDialog(): void {
+    const dialogConfig=new MatDialogConfig();
     const dialogRef = this.dialog.open(PopupComponent, {
-      width: '300px',
-      data: {}
+      data: {},
+      panelClass: 'custom-modalbox'
     });
 
     dialogRef.afterClosed().subscribe(result => {

@@ -1,11 +1,12 @@
-<h1 mat-dialog-title>Want to receive our emails?</h1>
+<img class ="ReviewPic" src="../../assets/images/thumbs/01.jpg" alt="" />
+
 <div mat-dialog-content>
-  <p>What's your email?</p>
-  <mat-form-field>
-    <input matInput [(ngModel)]="data.email">
-  </mat-form-field>
+    <input id="inputdefault" type="text" data-test="title-input" class="amplify-form-input1" placeholder="Title">
+    <textarea style="resize: none;" id="inputdefault" name="w3review" rows="4" cols="50"placeholder="Review" ></textarea>
+    <button ng-click="countVal=countVal-1"><i class="glyphicon glyphicon-minus">  </i></button>
+    <button  ng-click="countVal=countVal+1"> <i class="glyphicon glyphicon-plus">  </i> </button>
 </div>
 <div mat-dialog-actions>
-  <button mat-button (click)="onNoClick()">No</button>
-  <button mat-button [mat-dialog-close]="data.email" cdkFocusInitial>Yes</button>
+  <button mat-button (click)="onNoClick()">Exit</button>
+  <button mat-button [mat-dialog-close]="data.email" cdkFocusInitial>Save</button>
 </div>
