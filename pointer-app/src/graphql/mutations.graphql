@@ -1,45 +1,111 @@
 # this is an auto generated file. This will be overwritten
-mutation CreateUser(
-  $input: CreateUserInput!
-  $condition: ModelUserConditionInput
+mutation CreateUserProfile(
+  $input: CreateUserProfileInput!
+  $condition: ModelUserProfileConditionInput
 ) {
-  createUser(input: $input, condition: $condition) {
-    id
+  createUserProfile(input: $input, condition: $condition) {
     username
     firstName
-    lastName
-    bio
     image
+    reviewsList {
+      reviewID
+      title
+      description
+      image
+      rating
+      tags
+      createdAt
+      updatedAt
+    }
     createdAt
     updatedAt
   }
 }
-mutation UpdateUser(
-  $input: UpdateUserInput!
-  $condition: ModelUserConditionInput
+mutation UpdateUserProfile(
+  $input: UpdateUserProfileInput!
+  $condition: ModelUserProfileConditionInput
 ) {
-  updateUser(input: $input, condition: $condition) {
-    id
+  updateUserProfile(input: $input, condition: $condition) {
     username
     firstName
-    lastName
-    bio
     image
+    reviewsList {
+      reviewID
+      title
+      description
+      image
+      rating
+      tags
+      createdAt
+      updatedAt
+    }
     createdAt
     updatedAt
   }
 }
-mutation DeleteUser(
-  $input: DeleteUserInput!
-  $condition: ModelUserConditionInput
+mutation DeleteUserProfile(
+  $input: DeleteUserProfileInput!
+  $condition: ModelUserProfileConditionInput
 ) {
-  deleteUser(input: $input, condition: $condition) {
-    id
+  deleteUserProfile(input: $input, condition: $condition) {
     username
     firstName
-    lastName
-    bio
     image
+    reviewsList {
+      reviewID
+      title
+      description
+      image
+      rating
+      tags
+      createdAt
+      updatedAt
+    }
+    createdAt
+    updatedAt
+  }
+}
+mutation CreateReviewStruct(
+  $input: CreateReviewStructInput!
+  $condition: ModelreviewStructConditionInput
+) {
+  createReviewStruct(input: $input, condition: $condition) {
+    reviewID
+    title
+    description
+    image
+    rating
+    tags
+    createdAt
+    updatedAt
+  }
+}
+mutation UpdateReviewStruct(
+  $input: UpdateReviewStructInput!
+  $condition: ModelreviewStructConditionInput
+) {
+  updateReviewStruct(input: $input, condition: $condition) {
+    reviewID
+    title
+    description
+    image
+    rating
+    tags
+    createdAt
+    updatedAt
+  }
+}
+mutation DeleteReviewStruct(
+  $input: DeleteReviewStructInput!
+  $condition: ModelreviewStructConditionInput
+) {
+  deleteReviewStruct(input: $input, condition: $condition) {
+    reviewID
+    title
+    description
+    image
+    rating
+    tags
     createdAt
     updatedAt
   }

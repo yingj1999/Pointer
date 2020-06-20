@@ -1,12 +1,14 @@
 <img class ="ReviewPic" src="../../assets/images/thumbs/01.jpg" alt="" />
 
 <div mat-dialog-content>
-    <input id="inputdefault" type="text" data-test="title-input" class="amplify-form-input1" placeholder="Title">
-    <textarea style="resize: none;" id="inputdefault" name="w3review" rows="4" cols="50"placeholder="Review" ></textarea>
-    <button ng-click="countVal=countVal-1"><i class="glyphicon glyphicon-minus">  </i></button>
-    <button  ng-click="countVal=countVal+1"> <i class="glyphicon glyphicon-plus">  </i> </button>
+    <input class="inputdefault" type="text" data-test="title-input"  placeholder="Title" id="titleInput"  [(ngModel)]="title">
+    <textarea class="inputdefault" style="resize: none;"   rows="4" cols="50"placeholder="Review" id="ReviewInput" ></textarea>
+
+    <label id ="ratingLabel" for="ratingInput" style = "font-size:25px !important;">Rating:   
+    <input id="ratingInput" type="number" style="text-align: center;" placeholder=0 [value]="rating" id ="ratingInput"size='4'min="0" max="10"/></label>
+        
 </div>
 <div mat-dialog-actions>
   <button mat-button (click)="onNoClick()">Exit</button>
-  <button mat-button [mat-dialog-close]="data.email" cdkFocusInitial>Save</button>
+  <button mat-button mat-dialog-close cdkFocusInitial (click)="saveData()">Save</button>
 </div>

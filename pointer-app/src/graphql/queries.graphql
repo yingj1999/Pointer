@@ -1,29 +1,74 @@
 # this is an auto generated file. This will be overwritten
-query GetUser($id: ID!) {
-  getUser(id: $id) {
-    id
+query GetUserProfile($id: ID!) {
+  getUserProfile(id: $id) {
     username
     firstName
-    lastName
-    bio
     image
+    reviewsList {
+      reviewID
+      title
+      description
+      image
+      rating
+      tags
+      createdAt
+      updatedAt
+    }
     createdAt
     updatedAt
   }
 }
-query ListUsers(
-  $filter: ModelUserFilterInput
+query ListUserProfiles(
+  $filter: ModelUserProfileFilterInput
   $limit: Int
   $nextToken: String
 ) {
-  listUsers(filter: $filter, limit: $limit, nextToken: $nextToken) {
+  listUserProfiles(filter: $filter, limit: $limit, nextToken: $nextToken) {
     items {
-      id
       username
       firstName
-      lastName
-      bio
       image
+      reviewsList {
+        reviewID
+        title
+        description
+        image
+        rating
+        tags
+        createdAt
+        updatedAt
+      }
+      createdAt
+      updatedAt
+    }
+    nextToken
+  }
+}
+query GetReviewStruct($id: ID!) {
+  getReviewStruct(id: $id) {
+    reviewID
+    title
+    description
+    image
+    rating
+    tags
+    createdAt
+    updatedAt
+  }
+}
+query ListReviewStructs(
+  $filter: ModelreviewStructFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listReviewStructs(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    items {
+      reviewID
+      title
+      description
+      image
+      rating
+      tags
       createdAt
       updatedAt
     }

@@ -9,7 +9,8 @@ interface DialogData {
   styleUrls: ['./popup.component.css']
 })
 export class PopupComponent implements OnInit {
-
+  rating:number;
+  title:string;
   constructor(
     public dialogRef: MatDialogRef<PopupComponent>,
     @Inject(MAT_DIALOG_DATA) public data: DialogData) {}
@@ -21,5 +22,11 @@ export class PopupComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  saveData(){
+    this.title = ((document.getElementById("titleInput") as HTMLInputElement).value);
+    console.log(this.title)
+    this.rating = Number(((document.getElementById("ratingInput") as HTMLInputElement).value));
+    console.log(this.rating)
+  }
   
 }

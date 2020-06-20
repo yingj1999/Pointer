@@ -1,8 +1,14 @@
-type User @model {
-  id: ID!
+type UserProfile @model {
   username: String!
-  firstName: String
-  lastName: String
-  bio: String
-  image: String
+  firstName: String!
+  image: String!
+  reviewsList: [reviewStruct!]!
+}
+type reviewStruct @model {
+  reviewID: String!
+  title: String!
+  description: String!
+  image: String!
+  rating: Int!
+  tags: [String!]!
 }

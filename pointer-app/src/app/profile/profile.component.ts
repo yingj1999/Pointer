@@ -8,24 +8,25 @@ import {
 import {
   Router
 } from '@angular/router';
+import {User} from '../user'
+import {ReviewStruct} from '../review-struct'
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit {
-  email: string;
+  arr: ReviewStruct[] = [];
+  user = new User('', '', '', this.arr);
   constructor(private router: Router,public dialog: MatDialog) { }
   openDialog(): void {
     const dialogConfig=new MatDialogConfig();
-    const dialogRef = this.dialog.open(PopupComponent, {
+    this.dialog.open(PopupComponent, {
       data: {},
       panelClass: 'custom-modalbox'
     });
-
-    dialogRef.afterClosed().subscribe(result => {
-      this.email = result;
-    });
+    dialogConfig.autoFocus = true;
+   
   }
   ngOnInit(): void {
   }

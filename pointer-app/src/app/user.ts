@@ -1,10 +1,9 @@
+import {ReviewStruct} from './review-struct'
 export class User {
     constructor(
-        public id: string,
         public username: string,
         public firstName: string,
-        public lastName: string,
-        public aboutMe: string,
-        public imageUrl: string
+        public imageUrl: string,
+        public reviewsList: ReviewStruct[]
     ){}
 }

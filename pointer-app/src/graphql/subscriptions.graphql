@@ -1,36 +1,93 @@
 # this is an auto generated file. This will be overwritten
-subscription OnCreateUser {
-  onCreateUser {
-    id
+subscription OnCreateUserProfile {
+  onCreateUserProfile {
     username
     firstName
-    lastName
-    bio
     image
+    reviewsList {
+      reviewID
+      title
+      description
+      image
+      rating
+      tags
+      createdAt
+      updatedAt
+    }
     createdAt
     updatedAt
   }
 }
-subscription OnUpdateUser {
-  onUpdateUser {
-    id
+subscription OnUpdateUserProfile {
+  onUpdateUserProfile {
     username
     firstName
-    lastName
-    bio
     image
+    reviewsList {
+      reviewID
+      title
+      description
+      image
+      rating
+      tags
+      createdAt
+      updatedAt
+    }
     createdAt
     updatedAt
   }
 }
-subscription OnDeleteUser {
-  onDeleteUser {
-    id
+subscription OnDeleteUserProfile {
+  onDeleteUserProfile {
     username
     firstName
-    lastName
-    bio
     image
+    reviewsList {
+      reviewID
+      title
+      description
+      image
+      rating
+      tags
+      createdAt
+      updatedAt
+    }
+    createdAt
+    updatedAt
+  }
+}
+subscription OnCreateReviewStruct {
+  onCreateReviewStruct {
+    reviewID
+    title
+    description
+    image
+    rating
+    tags
+    createdAt
+    updatedAt
+  }
+}
+subscription OnUpdateReviewStruct {
+  onUpdateReviewStruct {
+    reviewID
+    title
+    description
+    image
+    rating
+    tags
+    createdAt
+    updatedAt
+  }
+}
+subscription OnDeleteReviewStruct {
+  onDeleteReviewStruct {
+    reviewID
+    title
+    description
+    image
+    rating
+    tags
     createdAt
     updatedAt
   }

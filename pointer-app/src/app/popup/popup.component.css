@@ -29,6 +29,22 @@
     padding: 10px !important;
 }
 
-#inputdefault {
+.inputdefault {
     margin-bottom: 20px; 
   }
+#mat-input-0{
+    padding-right: 20px;
+    size: 6;
+}
+#ratingLabel{
+    display: flex;
+    align-items: center;
+    justify-content: center
+}
+input[type=number]::-webkit-inner-spin-button {
+    opacity: 1;
+  }
+  input[type=number] {
+    line-height: 27px;
+  }
+  

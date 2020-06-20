@@ -10,6 +10,11 @@
 			"StackName": "amplify-pointerapp-dev-160352",
 			"StackId": "arn:aws:cloudformation:us-east-1:883203870102:stack/amplify-pointerapp-dev-160352/af18dce0-ac1e-11ea-b6b3-0e4a688d3275",
 			"AmplifyAppId": "d3l0oiowfcoylm"
+		},
+		"categories": {
+			"auth": {
+				"pointerapp3a6880e6": {}
+			}
 		}
 	},
 	"auth": {
@@ -17,11 +22,6 @@
 			"service": "Cognito",
 			"providerPlugin": "awscloudformation",
 			"dependsOn": [],
-			"providerMetadata": {
-				"s3TemplateURL": "https://s3.amazonaws.com/amplify-pointerapp-dev-160352-deployment/amplify-cfn-templates/auth/pointerapp3a6880e6-cloudformation-template.yml",
-				"logicalId": "authpointerapp3a6880e6"
-			},
-			"lastPushTimeStamp": "2020-06-13T15:50:37.902Z",
 			"output": {
 				"AppClientSecret": "25v5n6hk9gngf8m1d4k29bef8crcpo4em7t6pe7iiprvqs432qg",
 				"UserPoolId": "us-east-1_5AMQEbqiv",
@@ -31,7 +31,11 @@
 				"IdentityPoolName": "pointerapp3a6880e6_identitypool_3a6880e6__dev",
 				"UserPoolName": "pointerapp3a6880e6_userpool_3a6880e6"
 			},
-			"lastPushDirHash": "llemdQOgn3pSJH3Hiay9YrRkjkE="
+			"lastPushTimeStamp": "2020-06-20T16:35:46.135Z",
+			"providerMetadata": {
+				"s3TemplateURL": "https://s3.amazonaws.com/amplify-pointerapp-dev-160352-deployment/amplify-cfn-templates/auth/pointerapp3a6880e6-cloudformation-template.yml",
+				"logicalId": "authpointerapp3a6880e6"
+			}
 		}
 	},
 	"api": {
@@ -51,12 +55,12 @@
 				"GraphQLAPIIdOutput": "kscpnwnfrbf2tp7jkforvx63oq",
 				"GraphQLAPIEndpointOutput": "https://qcwhnij7yfcv3ncydln4g5i2ry.appsync-api.us-east-1.amazonaws.com/graphql"
 			},
+			"lastPushTimeStamp": "2020-06-20T16:35:49.275Z",
 			"providerMetadata": {
 				"s3TemplateURL": "https://s3.amazonaws.com/amplify-pointerapp-dev-160352-deployment/amplify-cfn-templates/api/cloudformation-template.json",
 				"logicalId": "apipointerapp"
 			},
-			"lastPushTimeStamp": "2020-06-13T15:50:41.198Z",
-			"lastPushDirHash": "TdmxcOMm4Gwel5X6s+fsH+pmydQ="
+			"lastPushDirHash": "1TSl79YygsKl/t2FUKO7oqhLfpM="
 		}
 	}
 }
