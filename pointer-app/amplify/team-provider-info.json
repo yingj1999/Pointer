@@ -14,6 +14,12 @@
         "categories": {
             "auth": {
                 "pointerapp3a6880e6": {}
+            },
+            "hosting": {
+                "amplifyhosting": {
+                    "appId": "d3l0oiowfcoylm",
+                    "type": "manual"
+                }
             }
         }
     }

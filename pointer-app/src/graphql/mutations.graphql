@@ -5,18 +5,8 @@ mutation CreateUserProfile(
 ) {
   createUserProfile(input: $input, condition: $condition) {
     username
-    firstName
     image
-    reviewsList {
-      reviewID
-      title
-      description
-      image
-      rating
-      tags
-      createdAt
-      updatedAt
-    }
+    reviewsList
     createdAt
     updatedAt
   }
@@ -27,18 +17,8 @@ mutation UpdateUserProfile(
 ) {
   updateUserProfile(input: $input, condition: $condition) {
     username
-    firstName
     image
-    reviewsList {
-      reviewID
-      title
-      description
-      image
-      rating
-      tags
-      createdAt
-      updatedAt
-    }
+    reviewsList
     createdAt
     updatedAt
   }
@@ -49,18 +29,8 @@ mutation DeleteUserProfile(
 ) {
   deleteUserProfile(input: $input, condition: $condition) {
     username
-    firstName
     image
-    reviewsList {
-      reviewID
-      title
-      description
-      image
-      rating
-      tags
-      createdAt
-      updatedAt
-    }
+    reviewsList
     createdAt
     updatedAt
   }

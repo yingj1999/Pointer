@@ -1,0 +1,54 @@
+{
+    "permissions": {
+        "auth": {
+            "pointerapp3a6880e6": [
+                "create",
+                "read",
+                "update",
+                "delete"
+            ]
+        },
+        "api": {
+            "userProfile": [
+                "create",
+                "read",
+                "update",
+                "delete"
+            ],
+            "pointerapi": [
+                "create",
+                "read",
+                "update",
+                "delete"
+            ]
+        },
+        "function": {
+            "pointerappc35e347e": [
+                "create",
+                "read",
+                "update",
+                "delete"
+            ]
+        },
+        "storage": {
+            "database": [
+                "create",
+                "read",
+                "update",
+                "delete"
+            ],
+            "UserProfile:@model(appsync)": [
+                "create",
+                "read",
+                "update",
+                "delete"
+            ],
+            "reviewStruct:@model(appsync)": [
+                "create",
+                "read",
+                "update",
+                "delete"
+            ]
+        }
+    }
+}

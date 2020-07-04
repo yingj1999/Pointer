@@ -1,5 +1,5 @@
 {
-    "AppSyncApiName": "pointerapp",
+    "AppSyncApiName": "userProfile",
     "DynamoDBBillingMode": "PAY_PER_REQUEST",
     "DynamoDBEnableServerSideEncryption": "false",
     "AuthCognitoUserPoolId": {

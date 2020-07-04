@@ -121,13 +121,13 @@
 				}
 			}
 		},
-		"apipointerapp": {
+		"apiuserProfile": {
 			"Type": "AWS::CloudFormation::Stack",
 			"Properties": {
 				"TemplateURL": "https://s3.amazonaws.com/amplify-pointerapp-dev-160352-deployment/amplify-cfn-templates/api/cloudformation-template.json",
 				"Parameters": {
 					"CreateAPIKey": 0,
-					"AppSyncApiName": "pointerapp",
+					"AppSyncApiName": "userProfile",
 					"DynamoDBBillingMode": "PAY_PER_REQUEST",
 					"DynamoDBEnableServerSideEncryption": "false",
 					"AuthCognitoUserPoolId": {
@@ -137,7 +137,168 @@
 						]
 					},
 					"S3DeploymentBucket": "amplify-pointerapp-dev-160352-deployment",
-					"S3DeploymentRootKey": "amplify-appsync-files/3612c68e2728eea61e65bdfe520df3873a7160fe",
+					"S3DeploymentRootKey": "amplify-appsync-files/9cb8c063c93c84a46b3c27a7c1e0cdf08268529e",
+					"env": "dev"
+				}
+			}
+		},
+		"apipointerapi": {
+			"Type": "AWS::CloudFormation::Stack",
+			"Properties": {
+				"TemplateURL": "https://s3.amazonaws.com/amplify-pointerapp-dev-160352-deployment/amplify-cfn-templates/api/pointerapi-cloudformation-template.json",
+				"Parameters": {
+					"authRoleName": {
+						"Ref": "AuthRoleName"
+					},
+					"unauthRoleName": {
+						"Ref": "UnauthRoleName"
+					},
+					"functionpointerappc35e347eName": {
+						"Fn::GetAtt": [
+							"functionpointerappc35e347e",
+							"Outputs.Name"
+						]
+					},
+					"functionpointerappc35e347eArn": {
+						"Fn::GetAtt": [
+							"functionpointerappc35e347e",
+							"Outputs.Arn"
+						]
+					},
+					"env": "dev"
+				}
+			}
+		},
+		"apidbServices": {
+			"Type": "AWS::CloudFormation::Stack",
+			"Properties": {
+				"TemplateURL": "https://s3.amazonaws.com/amplify-pointerapp-dev-160352-deployment/amplify-cfn-templates/api/dbServices-cloudformation-template.json",
+				"Parameters": {
+					"authRoleName": {
+						"Ref": "AuthRoleName"
+					},
+					"unauthRoleName": {
+						"Ref": "UnauthRoleName"
+					},
+					"functionsetUserName": {
+						"Fn::GetAtt": [
+							"functionsetUser",
+							"Outputs.Name"
+						]
+					},
+					"functionsetUserArn": {
+						"Fn::GetAtt": [
+							"functionsetUser",
+							"Outputs.Arn"
+						]
+					},
+					"env": "dev"
+				}
+			}
+		},
+		"functionpointerappc35e347e": {
+			"Type": "AWS::CloudFormation::Stack",
+			"Properties": {
+				"TemplateURL": "https://s3.amazonaws.com/amplify-pointerapp-dev-160352-deployment/amplify-cfn-templates/function/pointerappc35e347e-cloudformation-template.json",
+				"Parameters": {
+					"authpointerapp3a6880e6UserPoolId": {
+						"Fn::GetAtt": [
+							"authpointerapp3a6880e6",
+							"Outputs.UserPoolId"
+						]
+					},
+					"apiuserProfileGraphQLAPIIdOutput": {
+						"Fn::GetAtt": [
+							"apiuserProfile",
+							"Outputs.GraphQLAPIIdOutput"
+						]
+					},
+					"apiuserProfileGraphQLAPIEndpointOutput": {
+						"Fn::GetAtt": [
+							"apiuserProfile",
+							"Outputs.GraphQLAPIEndpointOutput"
+						]
+					},
+					"env": "dev"
+				}
+			}
+		},
+		"functionsetUser": {
+			"Type": "AWS::CloudFormation::Stack",
+			"Properties": {
+				"TemplateURL": "https://s3.amazonaws.com/amplify-pointerapp-dev-160352-deployment/amplify-cfn-templates/function/setUser-cloudformation-template.json",
+				"Parameters": {
+					"authpointerapp3a6880e6UserPoolId": {
+						"Fn::GetAtt": [
+							"authpointerapp3a6880e6",
+							"Outputs.UserPoolId"
+						]
+					},
+					"apiuserProfileGraphQLAPIIdOutput": {
+						"Fn::GetAtt": [
+							"apiuserProfile",
+							"Outputs.GraphQLAPIIdOutput"
+						]
+					},
+					"apiuserProfileGraphQLAPIEndpointOutput": {
+						"Fn::GetAtt": [
+							"apiuserProfile",
+							"Outputs.GraphQLAPIEndpointOutput"
+						]
+					},
+					"apipointerapiApiName": {
+						"Fn::GetAtt": [
+							"apipointerapi",
+							"Outputs.ApiName"
+						]
+					},
+					"apipointerapiApiId": {
+						"Fn::GetAtt": [
+							"apipointerapi",
+							"Outputs.ApiId"
+						]
+					},
+					"functionpointerappc35e347eName": {
+						"Fn::GetAtt": [
+							"functionpointerappc35e347e",
+							"Outputs.Name"
+						]
+					},
+					"storagedatabaseName": {
+						"Fn::GetAtt": [
+							"storagedatabase",
+							"Outputs.Name"
+						]
+					},
+					"storagedatabaseArn": {
+						"Fn::GetAtt": [
+							"storagedatabase",
+							"Outputs.Arn"
+						]
+					},
+					"env": "dev"
+				}
+			}
+		},
+		"hostingamplifyhosting": {
+			"Type": "AWS::CloudFormation::Stack",
+			"Properties": {
+				"TemplateURL": "https://s3.amazonaws.com/amplify-pointerapp-dev-160352-deployment/amplify-cfn-templates/hosting/amplifyhosting-template.json",
+				"Parameters": {
+					"appId": "d3l0oiowfcoylm",
+					"type": "manual",
+					"env": "dev"
+				}
+			}
+		},
+		"storagedatabase": {
+			"Type": "AWS::CloudFormation::Stack",
+			"Properties": {
+				"TemplateURL": "https://s3.amazonaws.com/amplify-pointerapp-dev-160352-deployment/amplify-cfn-templates/storage/database-cloudformation-template.json",
+				"Parameters": {
+					"tableName": "UserProfile",
+					"partitionKeyName": "username",
+					"partitionKeyType": "S",
 					"env": "dev"
 				}
 			}

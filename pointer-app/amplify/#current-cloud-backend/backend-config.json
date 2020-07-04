@@ -1,26 +1,136 @@
 {
-    "auth": {
-        "pointerapp3a6880e6": {
-            "service": "Cognito",
-            "providerPlugin": "awscloudformation",
-            "dependsOn": []
-        }
-    },
-    "api": {
-        "pointerapp": {
-            "service": "AppSync",
-            "providerPlugin": "awscloudformation",
-            "output": {
-                "authConfig": {
-                    "additionalAuthenticationProviders": [],
-                    "defaultAuthentication": {
-                        "authenticationType": "AMAZON_COGNITO_USER_POOLS",
-                        "userPoolConfig": {
-                            "userPoolId": "authpointerapp3a6880e6"
-                        }
-                    }
-                }
-            }
-        }
-    }
+	"auth": {
+		"pointerapp3a6880e6": {
+			"service": "Cognito",
+			"providerPlugin": "awscloudformation",
+			"dependsOn": []
+		}
+	},
+	"api": {
+		"userProfile": {
+			"service": "AppSync",
+			"providerPlugin": "awscloudformation",
+			"output": {
+				"authConfig": {
+					"additionalAuthenticationProviders": [],
+					"defaultAuthentication": {
+						"authenticationType": "AMAZON_COGNITO_USER_POOLS",
+						"userPoolConfig": {
+							"userPoolId": "authpointerapp3a6880e6"
+						}
+					}
+				}
+			}
+		},
+		"pointerapi": {
+			"service": "API Gateway",
+			"providerPlugin": "awscloudformation",
+			"dependsOn": [
+				{
+					"category": "function",
+					"resourceName": "pointerappc35e347e",
+					"attributes": [
+						"Name",
+						"Arn"
+					]
+				}
+			]
+		},
+		"dbServices": {
+			"service": "API Gateway",
+			"providerPlugin": "awscloudformation",
+			"dependsOn": [
+				{
+					"category": "function",
+					"resourceName": "setUser",
+					"attributes": [
+						"Name",
+						"Arn"
+					]
+				}
+			]
+		}
+	},
+	"function": {
+		"pointerappc35e347e": {
+			"build": true,
+			"providerPlugin": "awscloudformation",
+			"service": "Lambda",
+			"dependsOn": [
+				{
+					"category": "auth",
+					"resourceName": "pointerapp3a6880e6",
+					"attributes": [
+						"UserPoolId"
+					]
+				},
+				{
+					"category": "api",
+					"resourceName": "userProfile",
+					"attributes": [
+						"GraphQLAPIIdOutput",
+						"GraphQLAPIEndpointOutput"
+					]
+				}
+			]
+		},
+		"setUser": {
+			"build": true,
+			"providerPlugin": "awscloudformation",
+			"service": "Lambda",
+			"dependsOn": [
+				{
+					"category": "auth",
+					"resourceName": "pointerapp3a6880e6",
+					"attributes": [
+						"UserPoolId"
+					]
+				},
+				{
+					"category": "api",
+					"resourceName": "userProfile",
+					"attributes": [
+						"GraphQLAPIIdOutput",
+						"GraphQLAPIEndpointOutput"
+					]
+				},
+				{
+					"category": "api",
+					"resourceName": "pointerapi",
+					"attributes": [
+						"ApiName",
+						"ApiId"
+					]
+				},
+				{
+					"category": "function",
+					"resourceName": "pointerappc35e347e",
+					"attributes": [
+						"Name"
+					]
+				},
+				{
+					"category": "storage",
+					"resourceName": "database",
+					"attributes": [
+						"Name",
+						"Arn"
+					]
+				}
+			]
+		}
+	},
+	"hosting": {
+		"amplifyhosting": {
+			"service": "amplifyhosting",
+			"providerPlugin": "awscloudformation",
+			"type": "manual"
+		}
+	},
+	"storage": {
+		"database": {
+			"service": "DynamoDB",
+			"providerPlugin": "awscloudformation"
+		}
+	}
 }

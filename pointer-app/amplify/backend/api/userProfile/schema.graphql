@@ -1,8 +1,7 @@
 type UserProfile @model {
   username: String!
-  firstName: String!
   image: String!
-  reviewsList: [reviewStruct!]!
+  reviewsList: [Int!]!
 }
 type reviewStruct @model {
   reviewID: String!

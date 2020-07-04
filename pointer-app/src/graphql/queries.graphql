@@ -2,18 +2,8 @@
 query GetUserProfile($id: ID!) {
   getUserProfile(id: $id) {
     username
-    firstName
     image
-    reviewsList {
-      reviewID
-      title
-      description
-      image
-      rating
-      tags
-      createdAt
-      updatedAt
-    }
+    reviewsList
     createdAt
     updatedAt
   }
@@ -26,18 +16,8 @@ query ListUserProfiles(
   listUserProfiles(filter: $filter, limit: $limit, nextToken: $nextToken) {
     items {
       username
-      firstName
       image
-      reviewsList {
-        reviewID
-        title
-        description
-        image
-        rating
-        tags
-        createdAt
-        updatedAt
-      }
+      reviewsList
       createdAt
       updatedAt
     }

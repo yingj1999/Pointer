@@ -2,18 +2,8 @@
 subscription OnCreateUserProfile {
   onCreateUserProfile {
     username
-    firstName
     image
-    reviewsList {
-      reviewID
-      title
-      description
-      image
-      rating
-      tags
-      createdAt
-      updatedAt
-    }
+    reviewsList
     createdAt
     updatedAt
   }
@@ -21,18 +11,8 @@ subscription OnCreateUserProfile {
 subscription OnUpdateUserProfile {
   onUpdateUserProfile {
     username
-    firstName
     image
-    reviewsList {
-      reviewID
-      title
-      description
-      image
-      rating
-      tags
-      createdAt
-      updatedAt
-    }
+    reviewsList
     createdAt
     updatedAt
   }
@@ -40,18 +20,8 @@ subscription OnUpdateUserProfile {
 subscription OnDeleteUserProfile {
   onDeleteUserProfile {
     username
-    firstName
     image
-    reviewsList {
-      reviewID
-      title
-      description
-      image
-      rating
-      tags
-      createdAt
-      updatedAt
-    }
+    reviewsList
     createdAt
     updatedAt
   }

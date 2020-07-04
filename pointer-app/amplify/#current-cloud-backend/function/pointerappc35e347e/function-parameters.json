@@ -1,0 +1,34 @@
+{
+    "permissions": {
+        "auth": {
+            "pointerapp3a6880e6": [
+                "create",
+                "read",
+                "update",
+                "delete"
+            ]
+        },
+        "api": {
+            "userProfile": [
+                "create",
+                "read",
+                "update",
+                "delete"
+            ]
+        },
+        "storage": {
+            "UserProfile:@model(appsync)": [
+                "create",
+                "read",
+                "update",
+                "delete"
+            ],
+            "reviewStruct:@model(appsync)": [
+                "create",
+                "read",
+                "update",
+                "delete"
+            ]
+        }
+    }
+}

@@ -8,14 +8,14 @@ import { Observable } from "zen-observable-ts";
 
 export type CreateUserProfileInput = {
   username: string;
-  firstName: string;
   image: string;
+  reviewsList: Array<number>;
 };
 
 export type ModelUserProfileConditionInput = {
   username?: ModelStringInput | null;
-  firstName?: ModelStringInput | null;
   image?: ModelStringInput | null;
+  reviewsList?: ModelIntInput | null;
   and?: Array<ModelUserProfileConditionInput | null> | null;
   or?: Array<ModelUserProfileConditionInput | null> | null;
   not?: ModelUserProfileConditionInput | null;
@@ -60,10 +60,22 @@ export type ModelSizeInput = {
   between?: Array<number | null> | null;
 };
 
+export type ModelIntInput = {
+  ne?: number | null;
+  eq?: number | null;
+  le?: number | null;
+  lt?: number | null;
+  ge?: number | null;
+  gt?: number | null;
+  between?: Array<number | null> | null;
+  attributeExists?: boolean | null;
+  attributeType?: ModelAttributeTypes | null;
+};
+
 export type UpdateUserProfileInput = {
   username?: string | null;
-  firstName?: string | null;
   image?: string | null;
+  reviewsList?: Array<number> | null;
 };
 
 export type DeleteUserProfileInput = {
@@ -91,18 +103,6 @@ export type ModelreviewStructConditionInput = {
   not?: ModelreviewStructConditionInput | null;
 };
 
-export type ModelIntInput = {
-  ne?: number | null;
-  eq?: number | null;
-  le?: number | null;
-  lt?: number | null;
-  ge?: number | null;
-  gt?: number | null;
-  between?: Array<number | null> | null;
-  attributeExists?: boolean | null;
-  attributeType?: ModelAttributeTypes | null;
-};
-
 export type UpdateReviewStructInput = {
   reviewID?: string | null;
   title?: string | null;
@@ -118,8 +118,8 @@ export type DeleteReviewStructInput = {
 
 export type ModelUserProfileFilterInput = {
   username?: ModelStringInput | null;
-  firstName?: ModelStringInput | null;
   image?: ModelStringInput | null;
+  reviewsList?: ModelIntInput | null;
   and?: Array<ModelUserProfileFilterInput | null> | null;
   or?: Array<ModelUserProfileFilterInput | null> | null;
   not?: ModelUserProfileFilterInput | null;
@@ -140,19 +140,8 @@ export type ModelreviewStructFilterInput = {
 export type CreateUserProfileMutation = {
   __typename: "UserProfile";
   username: string;
-  firstName: string;
   image: string;
-  reviewsList: Array<{
-    __typename: "reviewStruct";
-    reviewID: string;
-    title: string;
-    description: string;
-    image: string;
-    rating: number;
-    tags: Array<string>;
-    createdAt: string;
-    updatedAt: string;
-  }>;
+  reviewsList: Array<number>;
   createdAt: string;
   updatedAt: string;
 };
@@ -160,19 +149,8 @@ export type CreateUserProfileMutation = {
 export type UpdateUserProfileMutation = {
   __typename: "UserProfile";
   username: string;
-  firstName: string;
   image: string;
-  reviewsList: Array<{
-    __typename: "reviewStruct";
-    reviewID: string;
-    title: string;
-    description: string;
-    image: string;
-    rating: number;
-    tags: Array<string>;
-    createdAt: string;
-    updatedAt: string;
-  }>;
+  reviewsList: Array<number>;
   createdAt: string;
   updatedAt: string;
 };
@@ -180,19 +158,8 @@ export type UpdateUserProfileMutation = {
 export type DeleteUserProfileMutation = {
   __typename: "UserProfile";
   username: string;
-  firstName: string;
   image: string;
-  reviewsList: Array<{
-    __typename: "reviewStruct";
-    reviewID: string;
-    title: string;
-    description: string;
-    image: string;
-    rating: number;
-    tags: Array<string>;
-    createdAt: string;
-    updatedAt: string;
-  }>;
+  reviewsList: Array<number>;
   createdAt: string;
   updatedAt: string;
 };
@@ -236,19 +203,8 @@ export type DeleteReviewStructMutation = {
 export type GetUserProfileQuery = {
   __typename: "UserProfile";
   username: string;
-  firstName: string;
   image: string;
-  reviewsList: Array<{
-    __typename: "reviewStruct";
-    reviewID: string;
-    title: string;
-    description: string;
-    image: string;
-    rating: number;
-    tags: Array<string>;
-    createdAt: string;
-    updatedAt: string;
-  }>;
+  reviewsList: Array<number>;
   createdAt: string;
   updatedAt: string;
 };
@@ -258,19 +214,8 @@ export type ListUserProfilesQuery = {
   items: Array<{
     __typename: "UserProfile";
     username: string;
-    firstName: string;
     image: string;
-    reviewsList: Array<{
-      __typename: "reviewStruct";
-      reviewID: string;
-      title: string;
-      description: string;
-      image: string;
-      rating: number;
-      tags: Array<string>;
-      createdAt: string;
-      updatedAt: string;
-    }>;
+    reviewsList: Array<number>;
     createdAt: string;
     updatedAt: string;
   } | null> | null;
@@ -308,19 +253,8 @@ export type ListReviewStructsQuery = {
 export type OnCreateUserProfileSubscription = {
   __typename: "UserProfile";
   username: string;
-  firstName: string;
   image: string;
-  reviewsList: Array<{
-    __typename: "reviewStruct";
-    reviewID: string;
-    title: string;
-    description: string;
-    image: string;
-    rating: number;
-    tags: Array<string>;
-    createdAt: string;
-    updatedAt: string;
-  }>;
+  reviewsList: Array<number>;
   createdAt: string;
   updatedAt: string;
 };
@@ -328,19 +262,8 @@ export type OnCreateUserProfileSubscription = {
 export type OnUpdateUserProfileSubscription = {
   __typename: "UserProfile";
   username: string;
-  firstName: string;
   image: string;
-  reviewsList: Array<{
-    __typename: "reviewStruct";
-    reviewID: string;
-    title: string;
-    description: string;
-    image: string;
-    rating: number;
-    tags: Array<string>;
-    createdAt: string;
-    updatedAt: string;
-  }>;
+  reviewsList: Array<number>;
   createdAt: string;
   updatedAt: string;
 };
@@ -348,19 +271,8 @@ export type OnUpdateUserProfileSubscription = {
 export type OnDeleteUserProfileSubscription = {
   __typename: "UserProfile";
   username: string;
-  firstName: string;
   image: string;
-  reviewsList: Array<{
-    __typename: "reviewStruct";
-    reviewID: string;
-    title: string;
-    description: string;
-    image: string;
-    rating: number;
-    tags: Array<string>;
-    createdAt: string;
-    updatedAt: string;
-  }>;
+  reviewsList: Array<number>;
   createdAt: string;
   updatedAt: string;
 };
@@ -413,19 +325,8 @@ export class APIService {
         createUserProfile(input: $input, condition: $condition) {
           __typename
           username
-          firstName
           image
-          reviewsList {
-            __typename
-            reviewID
-            title
-            description
-            image
-            rating
-            tags
-            createdAt
-            updatedAt
-          }
+          reviewsList
           createdAt
           updatedAt
         }
@@ -449,19 +350,8 @@ export class APIService {
         updateUserProfile(input: $input, condition: $condition) {
           __typename
           username
-          firstName
           image
-          reviewsList {
-            __typename
-            reviewID
-            title
-            description
-            image
-            rating
-            tags
-            createdAt
-            updatedAt
-          }
+          reviewsList
           createdAt
           updatedAt
         }
@@ -485,19 +375,8 @@ export class APIService {
         deleteUserProfile(input: $input, condition: $condition) {
           __typename
           username
-          firstName
           image
-          reviewsList {
-            __typename
-            reviewID
-            title
-            description
-            image
-            rating
-            tags
-            createdAt
-            updatedAt
-          }
+          reviewsList
           createdAt
           updatedAt
         }
@@ -602,19 +481,8 @@ export class APIService {
         getUserProfile(id: $id) {
           __typename
           username
-          firstName
           image
-          reviewsList {
-            __typename
-            reviewID
-            title
-            description
-            image
-            rating
-            tags
-            createdAt
-            updatedAt
-          }
+          reviewsList
           createdAt
           updatedAt
         }
@@ -638,19 +506,8 @@ export class APIService {
           items {
             __typename
             username
-            firstName
             image
-            reviewsList {
-              __typename
-              reviewID
-              title
-              description
-              image
-              rating
-              tags
-              createdAt
-              updatedAt
-            }
+            reviewsList
             createdAt
             updatedAt
           }
@@ -739,19 +596,8 @@ export class APIService {
         onCreateUserProfile {
           __typename
           username
-          firstName
           image
-          reviewsList {
-            __typename
-            reviewID
-            title
-            description
-            image
-            rating
-            tags
-            createdAt
-            updatedAt
-          }
+          reviewsList
           createdAt
           updatedAt
         }
@@ -767,19 +613,8 @@ export class APIService {
         onUpdateUserProfile {
           __typename
           username
-          firstName
           image
-          reviewsList {
-            __typename
-            reviewID
-            title
-            description
-            image
-            rating
-            tags
-            createdAt
-            updatedAt
-          }
+          reviewsList
           createdAt
           updatedAt
         }
@@ -795,19 +630,8 @@ export class APIService {
         onDeleteUserProfile {
           __typename
           username
-          firstName
           image
-          reviewsList {
-            __typename
-            reviewID
-            title
-            description
-            image
-            rating
-            tags
-            createdAt
-            updatedAt
-          }
+          reviewsList
           createdAt
           updatedAt
         }
