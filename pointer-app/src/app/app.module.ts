@@ -10,6 +10,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PopupComponent } from './popup/popup.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material.module';
+import {HttpClientModule} from '@angular/common/http';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -26,7 +28,12 @@ import { MaterialModule } from './material.module';
     BrowserModule,
     AppRoutingModule,
     AmplifyAngularModule,
-    FormsModule, ReactiveFormsModule, BrowserAnimationsModule,MaterialModule
+    FormsModule, 
+    ReactiveFormsModule, 
+    BrowserAnimationsModule,
+    MaterialModule,
+    HttpClientModule,
+    NgbModule.forRoot()
   ],
   providers: [AmplifyService],
   bootstrap: [AppComponent]

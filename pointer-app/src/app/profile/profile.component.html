@@ -14,28 +14,19 @@
 					<header id="header">
 						<span class="avatar"><img src="../../assets/images/avatar.jpg" alt="" /></span>
 						<h1>Profile of <strong>{{userName}}</strong></h1>
-						<h1>{{response}}</h1>
 					</header>
 				<!-- Main -->
 					<section id="main">
-
-						<!-- Thumbnails -->
+						<div class="d-flex flex-column justify-content-center">
 							<section class="thumbnails">
-								<div>
-									<app-list (click)="openDialog()" ></app-list>
-									<app-list ></app-list>
-								</div>
-								<div>
-									<app-list ></app-list>
-									<app-list ></app-list>
-									<app-list ></app-list>
-								</div>
-								<div>
-									<app-list ></app-list>
-									<app-list ></app-list>
+								<div class="d-flex flex-row" *ngFor ="let review of userReviews.Items">
+									<app-list (click)="openDialog()" [currentReview]="review"></app-list>
 								</div>
 							</section>
-
+							<div class="d-flex justify-content-center">
+								<button type="button" class="btn btn-success btn-circle btn-xl">+</button>
+							</div>
+						</div>
 					</section>
 
 				<!-- Footer -->

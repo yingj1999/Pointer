@@ -3,5 +3,10 @@
         "configLevel": "project",
         "useProfile": true,
         "profileName": "default"
+    },
+    "pointer": {
+        "configLevel": "project",
+        "useProfile": true,
+        "profileName": "default"
     }
 }

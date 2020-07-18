@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit ,Input } from '@angular/core';
+import {HttpClient,HttpHeaders} from "@angular/common/http";
+import {ReviewStruct} from '../interfaces/review-struct'
 
 @Component({
   selector: 'app-list',
@@ -6,8 +8,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./list.component.css']
 })
 export class ListComponent implements OnInit {
-
-  constructor() { }
+  @Input()
+  currentReview:ReviewStruct;
+  private apiLink="https://esnih9p6ae.execute-api.us-east-1.amazonaws.com/v1";
+  constructor(private http:HttpClient) { }
 
   ngOnInit(): void {
   }

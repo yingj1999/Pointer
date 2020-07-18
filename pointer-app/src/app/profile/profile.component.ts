@@ -1,16 +1,13 @@
 import { Component, OnInit,Inject, SystemJsNgModuleLoader } from '@angular/core';
 import Amplify, {API} from 'aws-amplify';
 import {MatDialog, MatDialogConfig, MAT_DIALOG_DATA} from '@angular/material/dialog';
-import {PopupComponent} from '../popup/popup.component'
-import {
-  Auth
-} from 'aws-amplify';
-import {
-  Router
-} from '@angular/router';
-import {User} from '../user'
-import {ReviewStruct} from '../review-struct'
+import {PopupComponent} from '../popup/popup.component';
+import {HttpClient,HttpHeaders} from "@angular/common/http";
+import {Auth} from 'aws-amplify';
+import {Router} from '@angular/router';
+import {User,UserDbObject} from '../interfaces/user'
 import aws_exports from '../../aws-exports';
+import {ReviewStruct,ReviewArray} from '../interfaces/review-struct';
 
 Amplify.configure(aws_exports);
 @Component({
@@ -19,14 +16,13 @@ Amplify.configure(aws_exports);
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit {
-  params = {
-    response: true
+  public user: User;
+  public userName: string;
+  public userReviews: ReviewArray;
+  private apiLink="https://esnih9p6ae.execute-api.us-east-1.amazonaws.com/v1";
+  constructor(private router: Router,public dialog: MatDialog,private http:HttpClient) { 
+    this.user={username:null,image:null,reviews:[]}
   }
-  arr: ReviewStruct[] = [];
-  user = new User('', '', '', this.arr);
-  userName: string;
-  response:any;
-  constructor(private router: Router,public dialog: MatDialog) { }
   openDialog(): void {
     const dialogConfig=new MatDialogConfig();
     this.dialog.open(PopupComponent, {
@@ -41,16 +37,15 @@ export class ProfileComponent implements OnInit {
       bypassCache: false
     }).then(async user => {
       this.userName = user.username;
-      this.getUserInfo();
+      this.getUserInfo().subscribe((data: UserDbObject)=>{
+        this.user=data.Item;
+      });
+      this.getAllReviews().subscribe((data: ReviewArray)=>{
+        this.userReviews=data;
+        console.log(this.userReviews);
+      });
     })
     .catch(err => console.log(err))
-    API.get("pointerapi", "/profile", this.params).then(response => {
-      debugger;
-      // Add your code here
-    }).catch(error => {
-      debugger;
-      console.log(error.response)
-    });
   }
   logOut(){
     Auth.signOut({ global: true })
@@ -60,17 +55,9 @@ export class ProfileComponent implements OnInit {
     .catch(err => console.log(err));
   }
   getUserInfo() {
-    const conditions = {
-      queryStringParameters: {  
-        username: this.userName,
-    },
-    }
-    API.get("pointerapi", "/user", conditions).then(response => {
-      this.response=(response)
-      // Add your code here
-    }).catch(error => {
-      console.log(error.response)
-    });
+    return this.http.get<Object>(this.apiLink+"/user/"+this.userName);
   }
-
+  getAllReviews() {
+    return this.http.get<Object>(this.apiLink+"/user/"+(this.userName)+"/reviews");
+  }
 }
