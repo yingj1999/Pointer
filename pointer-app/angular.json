@@ -28,10 +28,12 @@
               "src/styles.css",
               {
                 "input": "./node_modules/bootstrap/dist/css/bootstrap.css"
+              },
+              {
+                "input": "./node_modules/bootstrap/dist/css/bootstrap.css"
               }
             ],
-            "scripts": [
-            ]
+            "scripts": []
           },
           "configurations": {
             "production": {
