@@ -11,7 +11,7 @@ import { PopupComponent } from './popup/popup.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material.module';
 import {HttpClientModule} from '@angular/common/http';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import{PointerStoreModule} from './store/store.module';
 
 @NgModule({
   declarations: [
@@ -33,7 +33,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     BrowserAnimationsModule,
     MaterialModule,
     HttpClientModule,
-    NgbModule.forRoot()
+    PointerStoreModule,
   ],
   providers: [AmplifyService],
   bootstrap: [AppComponent]

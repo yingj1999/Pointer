@@ -1,5 +1,5 @@
 export interface ReviewStruct {
-         reviewID: string;
+         reviewId: string;
          title: string;
          description: string;
          image: string;

@@ -1,5 +1,6 @@
 @charset "UTF-8";
 @import url("http://fonts.googleapis.com/css?family=Source+Sans+Pro:200");
+@import "./font-awesome.min.css";
 /* Reset */
 
 html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
@@ -1420,10 +1421,12 @@ body {
     }
 
 /* Type */
-
+h1{
+    font-family: "Lucida Console", Monaco, monospace; 
+}
 body, input, select, textarea {
     color: rgba(255, 255, 255, 0.65);
-    font-family: "Source Sans Pro", Helvetica, sans-serif;
+    font-family: "Lucida Console", Monaco, monospace;  
     font-size: 13pt;
     font-weight: 200;
     line-height: 1.65;
@@ -1712,7 +1715,7 @@ input[id ="ratingInput"] {
         content: "";
         -moz-osx-font-smoothing: grayscale;
         -webkit-font-smoothing: antialiased;
-        font-family: FontAwesome;
+        font-family: "Lucida Console", Monaco, monospace;
         font-style: normal;
         font-weight: normal;
         text-transform: none !important;
@@ -1777,7 +1780,7 @@ input[type="radio"] {
         input[type="radio"] + label:before {
             -moz-osx-font-smoothing: grayscale;
             -webkit-font-smoothing: antialiased;
-            font-family: FontAwesome;
+            font-family: "Lucida Console", Monaco, monospace; 
             font-style: normal;
             font-weight: normal;
             text-transform: none !important;
@@ -1878,7 +1881,7 @@ input[type="radio"] + label:before {
     .icon:before {
         -moz-osx-font-smoothing: grayscale;
         -webkit-font-smoothing: antialiased;
-        font-family: FontAwesome;
+        font-family: "Lucida Console", Monaco, monospace; 
         font-style: normal;
         font-weight: normal;
         text-transform: none !important;
@@ -2441,6 +2444,7 @@ a[data-test="sign-out-button"]:hover,
     flex-direction: row;
     position: relative;
     margin: 0 0 2em -2em;
+    width: 100%;
 }
 
     .thumbnails a {
@@ -2646,4 +2650,4 @@ body.is-covered #wrapper {
 
     }
 html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+body { margin: 0; font-family: "Lucida Console", Monaco, monospace;  }

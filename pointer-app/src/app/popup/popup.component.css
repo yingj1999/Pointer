@@ -47,4 +47,7 @@ input[type=number]::-webkit-inner-spin-button {
   input[type=number] {
     line-height: 27px;
   }
+input,textarea,button,label{
+    font-family: "Source Sans Pro", Helvetica, sans-serif;
+}
   

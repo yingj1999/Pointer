@@ -17,14 +17,20 @@
 					</header>
 				<!-- Main -->
 					<section id="main">
-						<div class="d-flex flex-column justify-content-center">
-							<section class="thumbnails">
-								<div class="d-flex flex-row" *ngFor ="let review of userReviews.Items">
-									<app-list (click)="openDialog()" [currentReview]="review"></app-list>
+						<div class="d-flex flex-column justify-content-center ">
+							
+								<div class="d-flex flex-column justify-content-center">
+									
+									<div class="d-flex " *ngFor ="let reviewRow of group">
+										<section class="thumbnails">
+										<div class="d-flex flex-row " *ngFor ="let review of reviewRow">
+											<app-list (click)="openDialog(review)" [currentReview]="review" ></app-list>
+										</div>
+									</section>
+									</div>
 								</div>
-							</section>
 							<div class="d-flex justify-content-center">
-								<button type="button" class="btn btn-success btn-circle btn-xl">+</button>
+								<button type="button" class="btn btn-add btn-circle btn-xl">+</button>
 							</div>
 						</div>
 					</section>

@@ -16,3 +16,15 @@
     font-size: 12px;
     line-height: 1.42857;
 }
+
+.btn-add{
+    background-color:#CB6CE6;
+}
+.btn-add:hover {
+    background-color: hsl(287, 65%, 72%);
+    box-shadow:  0 0 0 1px hsl(287, 65%, 72%), 0 0 0.5em 0 #FF6382;
+}
+p, h1{
+    font-family: "Source Sans Pro", Helvetica, sans-serif;
+    color: #ffffff
+}
