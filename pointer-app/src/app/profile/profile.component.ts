@@ -34,15 +34,6 @@ export class ProfileComponent implements OnInit {
       this.userReviews=value;
     });
   }
-  openDialog(clickedReview:ReviewStruct): void {
-    const dialogConfig=new MatDialogConfig();
-    const popup=this.dialog.open(PopupComponent, {
-      data: {},
-      panelClass: 'custom-modalbox'
-    });
-        (<PopupComponent>popup.componentInstance).currentReview = clickedReview;
-    dialogConfig.autoFocus = true;
-  }
   ngOnInit(): void {
     Auth.currentAuthenticatedUser({
       bypassCache: false
@@ -57,6 +48,23 @@ export class ProfileComponent implements OnInit {
       });
     })
     .catch(err => console.log(err))
+  }
+  openDialog(clickedReview:ReviewStruct): void {
+    const dialogConfig=new MatDialogConfig();
+    const popup=this.dialog.open(PopupComponent, {
+      data: {},
+      panelClass: 'custom-modalbox'
+    });
+        (<PopupComponent>popup.componentInstance).currentReview = clickedReview;
+    dialogConfig.autoFocus = true;
+  }
+  newReview():void{
+    const dialogConfig=new MatDialogConfig();
+    const popup=this.dialog.open(PopupComponent, {
+      data: {isNewReview:true},
+      panelClass: 'custom-modalbox'
+    });
+    dialogConfig.autoFocus = true;
   }
   logOut(){
     Auth.signOut({ global: true })

@@ -1,5 +1,5 @@
 projects:
-  pointerapp:
+  userProfile:
     schemaPath: src/graphql/schema.json
     includes:
       - src/graphql/**/*.graphql

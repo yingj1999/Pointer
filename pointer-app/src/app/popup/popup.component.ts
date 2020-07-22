@@ -9,7 +9,7 @@ import {HttpClient,HttpHeaders} from "@angular/common/http";
 import {User} from '../interfaces/user'
 
 interface DialogData {
-  email: string;
+  isNewReview: boolean;
 }
 @Component({
   selector: 'app-popup',
@@ -21,6 +21,7 @@ export class PopupComponent implements OnInit {
   private apiLink="https://esnih9p6ae.execute-api.us-east-1.amazonaws.com/v1";
   public user: User;
   public currentReviewCopy: ReviewStruct;
+  public newReview:boolean;
   public httpOptions = {
     headers: new HttpHeaders({
       'Content-Type':  'application/json',
@@ -32,6 +33,7 @@ export class PopupComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data: DialogData,private http:HttpClient, private store:Store<PointerState>) {
       this.store.select(currentUser).subscribe((value:User)=>{
         this.user=value;
+        this.newReview=data.isNewReview;
       });
     }
 
@@ -43,23 +45,45 @@ export class PopupComponent implements OnInit {
   }
 
   saveData(){
-    this.currentReviewCopy = Object.assign({}, this.currentReview);
-    this.currentReviewCopy.title = ((document.getElementById("titleInput") as HTMLInputElement).value);
-    this.currentReviewCopy.rating = Number(((document.getElementById("ratingInput") as HTMLInputElement).value));
-    this.currentReviewCopy.description = ((document.getElementById("descriptionInput") as HTMLInputElement).value);
-    this.updateReviewInDB(this.currentReviewCopy).subscribe((data: Object)=>{
+    if(this.newReview){
+      var newReview:ReviewStruct={
+        reviewId:null,
+        title:((document.getElementById("titleInput") as HTMLInputElement).value),
+        description:((document.getElementById("descriptionInput") as HTMLInputElement).value),
+        image:null,
+        rating:Number(((document.getElementById("ratingInput") as HTMLInputElement).value)),
+        tags:null
+      }
+      this.addNewReview(newReview).subscribe((data: Object)=>{
         console.log(data);
     });
     this.getAllReviews().subscribe((data: ReviewArray)=>{
       this.store.dispatch(setCurrentUserReviews({currentUserReviews:data}));
     });
+    }
+    else{
+      this.currentReviewCopy = Object.assign({}, this.currentReview);
+      this.currentReviewCopy.title = ((document.getElementById("titleInput") as HTMLInputElement).value);
+      this.currentReviewCopy.rating = Number(((document.getElementById("ratingInput") as HTMLInputElement).value));
+      this.currentReviewCopy.description = ((document.getElementById("descriptionInput") as HTMLInputElement).value);
+      this.updateReviewInDB(this.currentReviewCopy).subscribe((data: Object)=>{
+          console.log(data);
+      });
+      this.getAllReviews().subscribe((data: ReviewArray)=>{
+        this.store.dispatch(setCurrentUserReviews({currentUserReviews:data}));
+      });
+    }
     parent.location.reload();
   }
   updateReviewInDB(currentReviewCopy:ReviewStruct){
+    console.log(currentReviewCopy);
     return this.http.put<Object>(this.apiLink+"/user/"+this.user.username+"/reviews/"+currentReviewCopy.reviewId,currentReviewCopy, this.httpOptions);
   }
   getAllReviews() {
     return this.http.get<Object>(this.apiLink+"/user/"+(this.user.username)+"/reviews");
+  }
+  addNewReview(newReview:ReviewStruct){
+    return this.http.post<Object>(this.apiLink+"/user/"+(this.user.username)+"/reviews",newReview, this.httpOptions);
   }
   
 }
