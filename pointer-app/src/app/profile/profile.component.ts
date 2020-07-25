@@ -1,4 +1,4 @@
-import { Component, OnInit,Inject, SystemJsNgModuleLoader } from '@angular/core';
+import { Component, OnInit,Inject, SystemJsNgModuleLoader, ChangeDetectorRef } from '@angular/core';
 import Amplify, {API} from 'aws-amplify';
 import {MatDialog, MatDialogConfig, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import {PopupComponent} from '../popup/popup.component';
@@ -12,7 +12,11 @@ import {PointerState} from '../store/interface';
 import {currentUser,currentUserReviews} from '../store/selectors';
 import{setCurrentUser,setCurrentUserReviews} from '../store/actions';
 import {HttpClient,HttpHeaders} from "@angular/common/http";
-
+interface ReturnReview{
+  body:string;
+  headers:Object;
+  statusCode:Number;
+}
 Amplify.configure(aws_exports);
 @Component({
   selector: 'app-profile',
@@ -21,12 +25,17 @@ Amplify.configure(aws_exports);
 })
 export class ProfileComponent implements OnInit {
   public group:Array<ReviewStruct[]>;
+  public httpOptions = {
+    headers: new HttpHeaders({
+      'Content-Type':  'application/json',
+      'Authorization': 'my-auth-token'
+    })
+  };
   public user: User;
   public userName: string;
   public userReviews: ReviewArray;
   private apiLink="https://esnih9p6ae.execute-api.us-east-1.amazonaws.com/v1";
-  constructor(private router: Router,public dialog: MatDialog,private http:HttpClient, private store:Store<PointerState>) { 
-    //this.user={username:null,image:null,reviews:[]}
+  constructor(private router: Router,public dialog: MatDialog,private http:HttpClient, private store:Store<PointerState>,private ref: ChangeDetectorRef) { 
     this.store.select(currentUser).subscribe((value:User)=>{
       this.user=value;
     });
@@ -47,24 +56,47 @@ export class ProfileComponent implements OnInit {
         this.group = this.groupArray(this.userReviews.Items, 3);
       });
     })
-    .catch(err => console.log(err))
+    .catch(err => console.log(err));
   }
   openDialog(clickedReview:ReviewStruct): void {
     const dialogConfig=new MatDialogConfig();
     const popup=this.dialog.open(PopupComponent, {
-      data: {},
+      data: {isNewReview:false},
       panelClass: 'custom-modalbox'
     });
+    if(clickedReview==undefined){
+      clickedReview={
+        reviewId:null,
+            title:null,
+            description:null,
+            image:null,
+            rating:null,
+            tags:null
+      }
+    }
         (<PopupComponent>popup.componentInstance).currentReview = clickedReview;
     dialogConfig.autoFocus = true;
+    popup.afterClosed().subscribe(result => {
+      this.group = this.groupArray(this.userReviews.Items, 3);
+    });
   }
-  newReview():void{
+  async newReview(){
     const dialogConfig=new MatDialogConfig();
     const popup=this.dialog.open(PopupComponent, {
       data: {isNewReview:true},
       panelClass: 'custom-modalbox'
     });
     dialogConfig.autoFocus = true;
+    popup.afterClosed().subscribe(async result => {
+      const data=await this.addNewReview(result.newReview);
+      var returnReview:ReviewStruct=JSON.parse(data.body);
+      result.newReview.reviewId=returnReview.reviewId;
+      var userReviewsCopy:ReviewStruct[]= Object.assign([], this.userReviews.Items); 
+      userReviewsCopy.push(result.newReview);
+      var newReviewArray: ReviewArray={Items:userReviewsCopy};
+      this.store.dispatch(setCurrentUserReviews({currentUserReviews:newReviewArray}));
+      this.group = this.groupArray(this.userReviews.Items, 3);
+    });
   }
   logOut(){
     Auth.signOut({ global: true })
@@ -92,5 +124,9 @@ export class ProfileComponent implements OnInit {
     }
 ​
     return group;
+}
+async addNewReview(newReview:ReviewStruct){
+  const response=await this.http.post<Object>(this.apiLink+"/user/"+(this.user.username)+"/reviews",newReview, this.httpOptions).toPromise();
+  return response as ReturnReview;
 }
 }

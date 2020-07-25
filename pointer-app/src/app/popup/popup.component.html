@@ -1,14 +1,29 @@
 <img class ="ReviewPic" src="../../assets/images/thumbs/01.jpg" alt="" />
+<div *ngIf="!newReview">
+  <div mat-dialog-content>
+      <input class="inputdefault" type="text" data-test="title-input"  placeholder="Title" id="titleInput"  [(ngModel)]="currentReview.title">
+      <textarea class="inputdefault" style="resize: none;"   rows="4" cols="50"placeholder="Review" id="descriptionInput" [(ngModel)]="currentReview.description"></textarea>
 
-<div mat-dialog-content>
-    <input class="inputdefault" type="text" data-test="title-input"  placeholder="Title" id="titleInput"  [(ngModel)]="currentReview.title">
-    <textarea class="inputdefault" style="resize: none;"   rows="4" cols="50"placeholder="Review" id="descriptionInput" [(ngModel)]="currentReview.description"></textarea>
-
-    <label id ="ratingLabel" for="ratingInput" style = "font-size:19px !important;">Rating   
-    <input id="ratingInput" type="number" style="text-align: center;"  placeholder=0 [value]="currentReview.rating" id ="ratingInput"size='3'min="0" max="10" [(ngModel)]="currentReview.rating"/></label>
-        
+      <label id ="ratingLabel" for="ratingInput" style = "font-size:19px !important;">Rating   
+      <input id="ratingInput" type="number" style="text-align: center;"  placeholder=0 [value]="currentReview.rating" id ="ratingInput"size='3'min="0" max="10" [(ngModel)]="currentReview.rating"/></label>
+          
+  </div>
+  <div mat-dialog-actions>
+    <button mat-button (click)="onNoClick()">Exit</button>
+    <button mat-button mat-dialog-close cdkFocusInitial (click)="saveData()">Save</button>
+  </div>
 </div>
-<div mat-dialog-actions>
-  <button mat-button (click)="onNoClick()">Exit</button>
-  <button mat-button mat-dialog-close cdkFocusInitial (click)="saveData()">Save</button>
+<div *ngIf="newReview">
+  <div mat-dialog-content>
+      <input class="inputdefault" type="text" data-test="title-input"  placeholder="Title" id="titleInput">
+      <textarea class="inputdefault" style="resize: none;"   rows="4" cols="50"placeholder="Review" id="descriptionInput"></textarea>
+
+      <label id ="ratingLabel" for="ratingInput" style = "font-size:19px !important;">Rating   
+      <input id="ratingInput" type="number" style="text-align: center;"  placeholder=0  id ="ratingInput"size='3'min="0" max="10"/></label>
+          
+  </div>
+  <div mat-dialog-actions>
+    <button mat-button (click)="onNoClick()">Exit</button>
+    <button mat-button mat-dialog-close cdkFocusInitial (click)="saveData()">Save</button>
+  </div>
 </div>
