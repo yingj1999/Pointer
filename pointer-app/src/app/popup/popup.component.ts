@@ -27,6 +27,7 @@ export class PopupComponent implements OnInit {
   public currentReviewCopy: ReviewStruct;
   public newReview:boolean;
   public userReviews: ReviewArray;
+  public tagArray:string[];
   public httpOptions = {
     headers: new HttpHeaders({
       'Content-Type':  'application/json',
@@ -50,6 +51,14 @@ export class PopupComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.currentReviewCopy = {
+      reviewId:this.currentReview.reviewId,
+          title:this.currentReview.title,
+          description:this.currentReview.description,
+          image:this.currentReview.image,
+          rating:this.currentReview.rating,
+          tags:this.currentReview.tags
+    };
   }
 
    saveData(){
@@ -60,15 +69,15 @@ export class PopupComponent implements OnInit {
         description:((document.getElementById("descriptionInput") as HTMLInputElement).value),
         image:null,
         rating:Number(((document.getElementById("ratingInput") as HTMLInputElement).value)),
-        tags:null
+        tags:this.tagArray
       }
     this.dialogRef.close({newReview:newReview});
     }
     else{
-      this.currentReviewCopy = Object.assign({}, this.currentReview);
       this.currentReviewCopy.title = ((document.getElementById("titleInput") as HTMLInputElement).value);
       this.currentReviewCopy.rating = Number(((document.getElementById("ratingInput") as HTMLInputElement).value));
       this.currentReviewCopy.description = ((document.getElementById("descriptionInput") as HTMLInputElement).value);
+      this.currentReviewCopy.tags=this.tagArray;
       this.updateReviewInDB(this.currentReviewCopy).subscribe((data: Object)=>{});
       var userReviewsCopy:ReviewStruct[]= Object.assign([], this.userReviews.Items); 
       userReviewsCopy.forEach( (element) => {
@@ -92,7 +101,10 @@ export class PopupComponent implements OnInit {
       this.dialogRef.close();
     }
   }
-
+  getTagArray($event){
+    this.tagArray=$event;
+    console.log(this.tagArray);
+  }
   updateReviewInDB(currentReviewCopy:ReviewStruct){
     console.log(currentReviewCopy);
     return this.http.put<Object>(this.apiLink+"/user/"+this.user.username+"/reviews/"+currentReviewCopy.reviewId,currentReviewCopy, this.httpOptions);

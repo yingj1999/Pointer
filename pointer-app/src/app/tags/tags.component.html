@@ -1,0 +1,30 @@
+
+    <!--Division for taking input from user -->
+        <div class="d-flex  flex-row
+                    justify-content-center align-items-center"> 
+  
+            <input [(ngModel)]="newTask" type="text" 
+                    value="" class="inputdefault" placeholder="Tag"> 
+  
+            <button  (click)="addToList()" class="ml-2 mr-2"  style="text-align:center;border-radius: 4px;"> 
+                Add Tag 
+            </button> 
+        </div> 
+  
+    <!--Tasks added repeated divisions-->
+    <div *ngFor="let x of items; let index = index;" 
+            class="" style="height:25px;"> 
+  
+  
+        <div class="d-flex flex-row
+                    justify-content-center align-items-center 
+                    "> 
+  
+            <div style="width:8rem;text-align:center;">{{x}}</div> 
+            <button (click)="deleteTask(index)" class="btn btn-xs"  style="text-align:center;"> 
+                X
+            </button> 
+            
+        </div> 
+          
+    </div> 

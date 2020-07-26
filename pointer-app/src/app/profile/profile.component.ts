@@ -64,16 +64,8 @@ export class ProfileComponent implements OnInit {
       data: {isNewReview:false},
       panelClass: 'custom-modalbox'
     });
-    if(clickedReview==undefined){
-      clickedReview={
-        reviewId:null,
-            title:null,
-            description:null,
-            image:null,
-            rating:null,
-            tags:null
-      }
-    }
+    
+    console.log(clickedReview.tags);
         (<PopupComponent>popup.componentInstance).currentReview = clickedReview;
     dialogConfig.autoFocus = true;
     popup.afterClosed().subscribe(result => {

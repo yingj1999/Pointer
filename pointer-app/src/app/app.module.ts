@@ -12,6 +12,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material.module';
 import {HttpClientModule} from '@angular/common/http';
 import{PointerStoreModule} from './store/store.module';
+import { TagsComponent } from './tags/tags.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import{PointerStoreModule} from './store/store.module';
     AuthComponent,
     ProfileComponent,
     PopupComponent,
+    TagsComponent,
   ],
   entryComponents: [
     PopupComponent
