@@ -4,6 +4,6 @@
     line-height: .5;
     border-radius: .2rem;
   }
-  input,textarea,button,label,div{
+  h2,input,textarea,button,label,div{
     font-family: "Source Sans Pro", Helvetica, sans-serif;
 }

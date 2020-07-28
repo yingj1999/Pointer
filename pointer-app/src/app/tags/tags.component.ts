@@ -8,6 +8,7 @@ import { Component, OnInit, EventEmitter, Output, Input } from '@angular/core';
 export class TagsComponent implements OnInit {
   @Output() tagArray=new EventEmitter<string[]>();
   @Input() currentTagArray: [];
+  @Input() isEdit:boolean;
   constructor() {
    }
    public items;

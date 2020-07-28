@@ -28,6 +28,7 @@ export class PopupComponent implements OnInit {
   public newReview:boolean;
   public userReviews: ReviewArray;
   public tagArray:string[];
+  public isEdit:boolean=false;
   public httpOptions = {
     headers: new HttpHeaders({
       'Content-Type':  'application/json',
@@ -98,7 +99,7 @@ export class PopupComponent implements OnInit {
     });
       var data: ReviewArray={Items:userReviewsCopy};
       this.store.dispatch(setCurrentUserReviews({currentUserReviews:data}));
-      this.dialogRef.close();
+      this.isEdit=false;
     }
   }
   getTagArray($event){
@@ -111,6 +112,9 @@ export class PopupComponent implements OnInit {
   }
   getAllReviews() {
     return this.http.get<Object>(this.apiLink+"/user/"+(this.user.username)+"/reviews");
+  }
+  clickEdit(){
+    this.isEdit=true;
   }
  
   

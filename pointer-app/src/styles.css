@@ -2665,10 +2665,18 @@ body { margin: 0; font-family: "Source Sans Pro", Helvetica, sans-serif;
         font-family: "Source Sans Pro", Helvetica, sans-serif;
         color:white;
         font-size: large;
+        margin-bottom: 1rem;
     }
     .amplify-input-label{
         font-family: "Source Sans Pro", Helvetica, sans-serif;
         color:white;
         font-size: larger;
         text-align: center;
+    }
+    .amplify-form-input[type="text"]{
+        margin-bottom: 1rem;
+    }
+    .amplify-form-button{
+        margin-top: 1rem;
+        border-radius: .2rem;
     }
