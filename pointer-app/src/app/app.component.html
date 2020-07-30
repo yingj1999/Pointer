@@ -1,1 +1,5 @@
+<div *ngIf="signInStatus">
+    <button class="HomeButton" (click)="onHomeClick()">Home</button>
+    <button class="ProfileButton" (click)="onProfileClick()">Profile</button>
+</div>
 <router-outlet></router-outlet>

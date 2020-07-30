@@ -2223,7 +2223,7 @@ table {
 div[class="amplify-greeting-text"]{
     display: none;
 }
-a[data-test="sign-out-button"]{
+a[data-test="sign-out-button"],.HomeButton,.ProfileButton{
     -moz-appearance: none;
     -webkit-appearance: none;
     -ms-appearance: none;
@@ -2282,12 +2282,31 @@ button,
     text-decoration: none;
     white-space: nowrap;
 }
+.HomeButton{
+    position: absolute;
+    right: 19rem;
+    top: 1rem;
+    font-family: "Source Sans Pro", Helvetica, sans-serif;
+    color:white;
+    font-size: medium;
+}
+.ProfileButton{
+    position: absolute;
+    right: 11rem;
+    top: 1rem;
+    font-family: "Source Sans Pro", Helvetica, sans-serif;
+    color:white;
+    font-size: medium;
+}
 a[data-test="sign-out-button"]{
     position: absolute;
-    right: 80px;
-    top: 10px;
+    right: 2rem;
+    top: 1rem;
+    font-size: medium;
   }
 a[data-test="sign-out-button"]:hover,
+.ProfileButton:hover,
+.HomeButton:hover
     input[type="submit"]:hover,
     input[type="reset"]:hover,
     input[type="button"]:hover,
@@ -2296,6 +2315,8 @@ a[data-test="sign-out-button"]:hover,
         background-color: rgb(145, 133, 136);;
     }
     a[data-test="sign-out-button"]:active,
+    .ProfileButton:active,
+    .HomeButton:active,
     input[type="submit"]:active,
     input[type="reset"]:active,
     input[type="button"]:active,
@@ -2309,6 +2330,8 @@ a[data-test="sign-out-button"]:hover,
     outline:none;
     }
     a[data-test="sign-out-button"].icon,
+    .ProfileButton.icon,
+    .HomeButton.icon,
     input[type="submit"].icon,
     input[type="reset"].icon,
     input[type="button"].icon,
@@ -2317,6 +2340,8 @@ a[data-test="sign-out-button"]:hover,
         padding-left: 1.35em;
     }
     a[data-test="sign-out-button"].icon:before,
+    .ProfileButton.icon:before
+    .HomeButton.icon:before,
         input[type="submit"].icon:before,
         input[type="reset"].icon:before,
         input[type="button"].icon:before,
@@ -2392,6 +2417,8 @@ a[data-test="sign-out-button"]:hover,
         color: blue;
     }
     a[data-test="sign-out-button"].special.hover,
+    .HomeButton.special.hover,
+    .ProfileButton.special.hover,
         input[type="submit"].special:hover,
         input[type="reset"].special:hover,
         input[type="button"].special:hover,

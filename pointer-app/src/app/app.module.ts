@@ -13,6 +13,8 @@ import { MaterialModule } from './material.module';
 import {HttpClientModule} from '@angular/common/http';
 import{PointerStoreModule} from './store/store.module';
 import { TagsComponent } from './tags/tags.component';
+import { UploadPictureComponent } from './upload-picture/upload-picture.component';
+import { DiscoverPageComponent } from './discover-page/discover-page.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +24,7 @@ import { TagsComponent } from './tags/tags.component';
     ProfileComponent,
     PopupComponent,
     TagsComponent,
+    DiscoverPageComponent,
   ],
   entryComponents: [
     PopupComponent
