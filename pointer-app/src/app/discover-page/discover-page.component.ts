@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-discover-page',
@@ -7,9 +8,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DiscoverPageComponent implements OnInit {
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit(): void {
+  }
+  onHomeClick(){
+    console.log("going home")
+    this.router.navigate(['/home']);
+  }
+  onProfileClick(){
+    this.router.navigate(['/profile']);
   }
 
 }

@@ -2,15 +2,19 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { ProfileComponent } from './profile/profile.component';
 import { AuthComponent } from './auth/auth.component';
-
+import {DiscoverPageComponent} from './discover-page/discover-page.component';
 
 const routes: Routes = [{
-  path: "user",
+  path: "profile",
   component: ProfileComponent
 },
 {
   path: "login",
   component: AuthComponent
+},
+{
+  path: "home",
+  component: DiscoverPageComponent
 },
 {
   path: '',
