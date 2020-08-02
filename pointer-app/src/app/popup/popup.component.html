@@ -43,6 +43,7 @@
     </div>
   </div>
   <div *ngIf="newReview">
+    <app-upload-picture [currentReview]=currentReview></app-upload-picture>
     <img class ="ReviewPic" src="../../assets/images/thumbs/01.jpg" alt="" />
     <div mat-dialog-content>
         <input class="inputdefault" type="text" data-test="title-input"  placeholder="Title" id="titleInput">

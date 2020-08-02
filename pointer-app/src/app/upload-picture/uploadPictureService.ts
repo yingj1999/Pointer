@@ -4,17 +4,15 @@ import { Observable } from 'rxjs';
 @Injectable()
 export class UploadPictureService {
 
-  private usersApiBaseUrl = '';  // URL to web api
+  constructor(private httpClient: HttpClient) {}
 
-  constructor(private httpClient: HttpClient) {
-    //this.usersApiBaseUrl = environment.API_URL + '/personal/users';
-  }
 
-  uploadProfileImage(userId: String, image: File): Observable<any> {
+  public uploadImage(image: File): Observable<any> {
     const formData = new FormData();
+
     formData.append('image', image);
 
-    return this.httpClient.post(`${this.usersApiBaseUrl}/${userId}/profile-picture`, formData);
+    return this.httpClient.post('/api/v1/image-upload', formData);
+
   }
-  // imports and other methods are absent for brevity
 }

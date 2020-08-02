@@ -25,6 +25,7 @@ import { DiscoverPageComponent } from './discover-page/discover-page.component';
     PopupComponent,
     TagsComponent,
     DiscoverPageComponent,
+    UploadPictureComponent
   ],
   entryComponents: [
     PopupComponent

@@ -1,4 +1,4 @@
-<!--<div *ngIf="(userData$ | async) as userDataVar; else loading" class="navigation-space-buffer">
+<div *ngIf="(userData$ | async) as userDataVar; else loading" class="navigation-space-buffer">
     <h2>Profile image <i class="fas fa-portrait"></i></h2>
     <div class="profile-image">
       <img *ngIf="selectedFileSrc || userDataVar.profile.imageUrl else robot"
@@ -29,5 +29,5 @@
     <div *ngIf="profileImageChangedStatus === 'fail'" class="alert alert-danger mt-2"> Image Profile failed to update!</div>
   
     <hr/>
-  </div>-->
+  </div>
   

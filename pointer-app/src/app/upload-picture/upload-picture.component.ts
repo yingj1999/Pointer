@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { ReviewStruct } from '../interfaces/review-struct';
+import {UploadPictureService} from './uploadPictureService';
 
 @Component({
   selector: 'app-upload-picture',
@@ -6,18 +8,25 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./upload-picture.component.css']
 })
 export class UploadPictureComponent implements OnInit {
-
-  constructor() { }
+  @Input() currentReview: ReviewStruct;
+  public currentReviewCopy: ReviewStruct;
+  constructor(private uploadPictureService: UploadPictureService,) { }
 
   ngOnInit(): void {
+    this.currentReviewCopy = {
+      reviewId:this.currentReview.reviewId,
+          title:this.currentReview.title,
+          description:this.currentReview.description,
+          image:this.currentReview.image,
+          rating:this.currentReview.rating,
+          tags:this.currentReview.tags
+    };
   }
 
   profileImageChangedStatus = 'init';
   uploadImageLabel = 'Choose file (max size 1MB)';
   imageFileIsTooBig = false;
   selectedFileSrc: string;
-
-  // ...... other methods and imports skipped for brevity
 
   changeImage(imageInput: HTMLInputElement) {
     const file: File = imageInput.files[0];
@@ -29,21 +38,14 @@ export class UploadPictureComponent implements OnInit {
       const reader = new FileReader();
 
       reader.addEventListener('load', (event: any) => {
-        // this.selectedFileSrc = event.target.result;
-        // this.userDataService.uploadProfileImage(this.userData.userId, file).subscribe(
-        //   (response) => {
-        //     this.userData.profile.imageUrl = response.url;
-        //     this.userDataStore.updateUserData$(this.userData).subscribe(
-        //       () => {
-        //         this.profileImageChangedStatus = 'ok';
-        //       },
-        //       () => {
-        //         this.profileImageChangedStatus = 'fail';
-        //       });
-        //   },
-        //   () => {
-        //     this.profileImageChangedStatus = 'fail';
-        //   });
+        this.selectedFileSrc = event.target.result;
+        this.uploadPictureService.uploadImage(file).subscribe(
+          (response) => {
+            this.currentReviewCopy.image = response.url;
+          },
+          () => {
+            this.profileImageChangedStatus = 'fail';
+          });
       });
 
       if (file) {

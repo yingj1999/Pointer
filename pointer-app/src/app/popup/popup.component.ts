@@ -101,6 +101,7 @@ export class PopupComponent implements OnInit {
         }
     });
       var data: ReviewArray={Items:userReviewsCopy};
+      console.log(data);
       this.store.dispatch(setCurrentUserReviews({currentUserReviews:data}));
       this.isEdit=false;
     }
