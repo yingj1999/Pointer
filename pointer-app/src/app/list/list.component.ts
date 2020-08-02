@@ -10,10 +10,10 @@ import {ReviewStruct} from '../interfaces/review-struct'
 export class ListComponent implements OnInit {
   @Input()
   currentReview:ReviewStruct;
-  private apiLink="https://esnih9p6ae.execute-api.us-east-1.amazonaws.com/v1";
   constructor(private http:HttpClient) { }
 
   ngOnInit(): void {
+    console.log(this.currentReview);
   }
 
 }

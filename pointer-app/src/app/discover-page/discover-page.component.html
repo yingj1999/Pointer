@@ -12,11 +12,26 @@
 
 				<!-- Header -->
 					<header id="header">
-						<span class="avatar"><img src="../../assets/images/avatar.jpg" alt="" /></span>
+						<div class="d-flex flex-column justify-content-center">
+							<h1>Discover</h1>
+							<input class="inputdefault" type="text" data-test="title-input"  placeholder="Search for a tag!" id="discoverSearch" >
+						</div>
 					</header>
 				<!-- Main -->
 					<section id="main">
-						<p>DISCOVER</p>
+						<div class="d-flex flex-column justify-content-center ">
+							
+							<div class="d-flex flex-column justify-content-center">
+								
+								<div class="d-flex " *ngFor ="let reviewRow of group">
+									<section class="thumbnails">
+									<div class="d-flex flex-row " *ngFor ="let review of reviewRow">
+										<app-list  [currentReview]="review" ></app-list>
+									</div>
+								</section>
+								</div>
+							</div>
+					</div>
 					</section>
 				<!-- Footer -->
 					<footer id="footer">

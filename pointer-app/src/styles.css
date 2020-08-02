@@ -2639,6 +2639,20 @@ body.is-covered #wrapper {
             display: block;
             width: 10em;
         }
+        .upperLeftLogo{
+            border-radius: 100%;
+            display: inline-block;
+            margin: 0 0 2em 0;
+            padding: 0.5em;
+            position: absolute;
+            left: 1rem;
+            top: .3rem;
+        }
+        .upperLeftLogo img{
+            border-radius: 100%;
+            display: block;
+            width: 8rem;
+        }
         #header .logo {
             border-radius: 100%;
             display: inline-block;
