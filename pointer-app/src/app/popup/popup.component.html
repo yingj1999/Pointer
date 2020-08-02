@@ -1,46 +1,60 @@
-
-<div *ngIf="!newReview">
-  <div *ngIf="!isEdit">
-    <img class ="ReviewPic" src="../../assets/images/thumbs/01.jpg" alt="" />
-    <div mat-dialog-content>
-      <input readonly class="inputdefault" type="text" data-test="title-input"  placeholder="Title" id="titleInput"  [(ngModel)]="currentReviewCopy.title">
-      <textarea readonly class="inputdefault mb-2" style="resize: none;"   rows="4" cols="50"placeholder="Review" id="descriptionInput" [(ngModel)]="currentReviewCopy.description"></textarea>
-      <app-tags (tagArray)="getTagArray($event)" [currentTagArray]="currentReviewCopy.tags" [isEdit]=false></app-tags>
-      <label class="mt-3" id ="ratingLabel" for="ratingInput" style = "font-size:19px !important;">Rating:   
-      <input readonly class= "ml-1" onkeydown="return false;" id="ratingInput"  style="text-align: center;"  placeholder=0 [value]="currentReviewCopy.rating" id ="ratingInput"size='3'min="0" max="10" [(ngModel)]="currentReviewCopy.rating"/></label>   
-    </div>
-    <div mat-dialog-actions>
-      <button mat-button (click)="onNoClick()">Exit</button>
-      <button mat-button (click)="clickEdit()">Edit</button>
-    </div>
-  </div>
-  <div *ngIf="isEdit">
-    <img class ="ReviewPic" src="../../assets/images/thumbs/01.jpg" alt="" />
-    <div mat-dialog-content>
-      <input class="inputdefault" type="text" data-test="title-input"  placeholder="Title" id="titleInput"  [(ngModel)]="currentReviewCopy.title">
-      <textarea class="inputdefault" style="resize: none;"   rows="4" cols="50"placeholder="Review" id="descriptionInput" [(ngModel)]="currentReviewCopy.description"></textarea>
-      <app-tags (tagArray)="getTagArray($event)" [currentTagArray]="currentReviewCopy.tags" [isEdit]=true></app-tags>
-      <label class="mt-3" id ="ratingLabel" for="ratingInput" style = "font-size:19px !important;">Rating:   
-      <input class= "ml-1" onkeydown="return false;" id="ratingInput" type="number" style="text-align: center;"  placeholder=0 [value]="currentReviewCopy.rating" id ="ratingInput"size='3'min="0" max="10" [(ngModel)]="currentReviewCopy.rating"/></label>  
-    </div>
-    <div mat-dialog-actions>
-      <button mat-button (click)="onNoClick()">Exit</button>
-      <button mat-button  cdkFocusInitial (click)="saveData()">Save</button>
-    </div>
-  </div>
-</div>
-<div *ngIf="newReview">
+<div *ngIf="readOnly">
   <img class ="ReviewPic" src="../../assets/images/thumbs/01.jpg" alt="" />
-  <div mat-dialog-content>
-      <input class="inputdefault" type="text" data-test="title-input"  placeholder="Title" id="titleInput">
-      <textarea class="inputdefault" style="resize: none;"   rows="4" cols="50"placeholder="Review" id="descriptionInput"></textarea>
-      <app-tags (tagArray)="getTagArray($event)" [currentTagArray]="[]" [isEdit]=true></app-tags>
-      <label class="mt-3" id ="ratingLabel" for="ratingInput" style = "font-size:19px !important;" class="mt-3">Rating:   
-      <input class= "ml-1" id="ratingInput" onkeydown="return false;" type="number" style="text-align: center;"  placeholder=0  id ="ratingInput"size='3'min="0" max="10"/></label>
-          
+      <div mat-dialog-content>
+        <input readonly class="inputdefault" type="text" data-test="title-input"  placeholder="Title" id="titleInput"  [(ngModel)]="currentReviewCopy.title">
+        <textarea readonly class="inputdefault mb-2" style="resize: none;"   rows="4" cols="50"placeholder="Review" id="descriptionInput" [(ngModel)]="currentReviewCopy.description"></textarea>
+        <app-tags (tagArray)="getTagArray($event)" [currentTagArray]="currentReviewCopy.tags" [isEdit]=false></app-tags>
+        <label class="mt-3" id ="ratingLabel" for="ratingInput" style = "font-size:19px !important;">Rating:   
+        <input readonly class= "ml-1" onkeydown="return false;" id="ratingInput"  style="text-align: center;"  placeholder=0 [value]="currentReviewCopy.rating" id ="ratingInput"size='3'min="0" max="10" [(ngModel)]="currentReviewCopy.rating"/></label>   
+      </div>
+      <div mat-dialog-actions>
+        <button mat-button (click)="onNoClick()">Exit</button>
+      </div>
+</div>
+<div *ngIf="!readOnly">
+  <div *ngIf="!newReview">
+    <div *ngIf="!isEdit">
+      <img class ="ReviewPic" src="../../assets/images/thumbs/01.jpg" alt="" />
+      <div mat-dialog-content>
+        <input readonly class="inputdefault" type="text" data-test="title-input"  placeholder="Title" id="titleInput"  [(ngModel)]="currentReviewCopy.title">
+        <textarea readonly class="inputdefault mb-2" style="resize: none;"   rows="4" cols="50"placeholder="Review" id="descriptionInput" [(ngModel)]="currentReviewCopy.description"></textarea>
+        <app-tags (tagArray)="getTagArray($event)" [currentTagArray]="currentReviewCopy.tags" [isEdit]=false></app-tags>
+        <label class="mt-3" id ="ratingLabel" for="ratingInput" style = "font-size:19px !important;">Rating:   
+        <input readonly class= "ml-1" onkeydown="return false;" id="ratingInput"  style="text-align: center;"  placeholder=0 [value]="currentReviewCopy.rating" id ="ratingInput"size='3'min="0" max="10" [(ngModel)]="currentReviewCopy.rating"/></label>   
+      </div>
+      <div mat-dialog-actions>
+        <button mat-button (click)="onNoClick()">Exit</button>
+        <button mat-button (click)="clickEdit()">Edit</button>
+      </div>
+    </div>
+    <div *ngIf="isEdit">
+      <img class ="ReviewPic" src="../../assets/images/thumbs/01.jpg" alt="" />
+      <div mat-dialog-content>
+        <input class="inputdefault" type="text" data-test="title-input"  placeholder="Title" id="titleInput"  [(ngModel)]="currentReviewCopy.title">
+        <textarea class="inputdefault" style="resize: none;"   rows="4" cols="50"placeholder="Review" id="descriptionInput" [(ngModel)]="currentReviewCopy.description"></textarea>
+        <app-tags (tagArray)="getTagArray($event)" [currentTagArray]="currentReviewCopy.tags" [isEdit]=true></app-tags>
+        <label class="mt-3" id ="ratingLabel" for="ratingInput" style = "font-size:19px !important;">Rating:   
+        <input class= "ml-1" onkeydown="return false;" id="ratingInput" type="number" style="text-align: center;"  placeholder=0 [value]="currentReviewCopy.rating" id ="ratingInput"size='3'min="0" max="10" [(ngModel)]="currentReviewCopy.rating"/></label>  
+      </div>
+      <div mat-dialog-actions>
+        <button mat-button (click)="onNoClick()">Exit</button>
+        <button mat-button  cdkFocusInitial (click)="saveData()">Save</button>
+      </div>
+    </div>
   </div>
-  <div mat-dialog-actions>
-    <button mat-button (click)="onNoClick()">Exit</button>
-    <button mat-button mat-dialog-close cdkFocusInitial (click)="saveData()">Save</button>
+  <div *ngIf="newReview">
+    <img class ="ReviewPic" src="../../assets/images/thumbs/01.jpg" alt="" />
+    <div mat-dialog-content>
+        <input class="inputdefault" type="text" data-test="title-input"  placeholder="Title" id="titleInput">
+        <textarea class="inputdefault" style="resize: none;"   rows="4" cols="50"placeholder="Review" id="descriptionInput"></textarea>
+        <app-tags (tagArray)="getTagArray($event)" [currentTagArray]="[]" [isEdit]=true></app-tags>
+        <label class="mt-3" id ="ratingLabel" for="ratingInput" style = "font-size:19px !important;" class="mt-3">Rating:   
+        <input class= "ml-1" id="ratingInput" onkeydown="return false;" type="number" style="text-align: center;"  placeholder=0  id ="ratingInput"size='3'min="0" max="10"/></label>
+            
+    </div>
+    <div mat-dialog-actions>
+      <button mat-button (click)="onNoClick()">Exit</button>
+      <button mat-button mat-dialog-close cdkFocusInitial (click)="saveData()">Save</button>
+    </div>
   </div>
 </div>

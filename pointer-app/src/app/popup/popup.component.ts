@@ -13,6 +13,7 @@ import * as rsx from 'rxjs'
 
 interface DialogData {
   isNewReview: boolean;
+  readOnly:boolean;
 }
 
 @Component({
@@ -28,6 +29,7 @@ export class PopupComponent implements OnInit {
   public newReview:boolean;
   public userReviews: ReviewArray;
   public tagArray:string[];
+  public readOnly:boolean;
   public isEdit:boolean=false;
   public httpOptions = {
     headers: new HttpHeaders({
@@ -41,6 +43,7 @@ export class PopupComponent implements OnInit {
       this.store.select(currentUser).subscribe((value:User)=>{
         this.user=value;
         this.newReview=data.isNewReview;
+        this.readOnly=data.readOnly;
       });
       this.store.select(currentUserReviews).subscribe((value:ReviewArray)=>{
         this.userReviews=value;

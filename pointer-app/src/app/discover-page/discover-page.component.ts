@@ -2,6 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ReviewStruct, ReviewArray } from '../interfaces/review-struct';
 import { HttpClient } from '@angular/common/http';
+import { MatDialogConfig, MatDialog } from '@angular/material/dialog';
+import { PopupComponent } from '../popup/popup.component';
+import { User } from '../interfaces/user';
+import { currentUser } from '../store/selectors';
+import { Store } from '@ngrx/store';
+import { PointerState } from '../store/interface';
 
 @Component({
   selector: 'app-discover-page',
@@ -10,8 +16,13 @@ import { HttpClient } from '@angular/common/http';
 })
 export class DiscoverPageComponent implements OnInit {
   public group:Array<ReviewStruct[]>;
+  public user: User;
   private apiLink="https://esnih9p6ae.execute-api.us-east-1.amazonaws.com/v1";
-  constructor(private router: Router,private http:HttpClient) { }
+  constructor(private router: Router,private http:HttpClient,public dialog: MatDialog,private store:Store<PointerState>) {
+    this.store.select(currentUser).subscribe((value:User)=>{
+      this.user=value;
+    });
+   }
 
   ngOnInit(): void {
     this.getAllReviews().subscribe((data: ReviewArray)=>{
@@ -26,6 +37,23 @@ export class DiscoverPageComponent implements OnInit {
   onProfileClick(){
     this.router.navigate(['/profile']);
   }
+  openDialog(clickedReview:ReviewStruct): void {
+    const dialogConfig=new MatDialogConfig();
+    const popup=this.dialog.open(PopupComponent, {
+      data: {isNewReview:false, readOnly:true},
+      panelClass: 'custom-modalbox'
+    });
+    
+    console.log(clickedReview.tags);
+        (<PopupComponent>popup.componentInstance).currentReview = clickedReview;
+    dialogConfig.autoFocus = true;
+  }
+  search(){
+    this.searchReviews(((document.getElementById("discoverSearch") as HTMLInputElement).value)).subscribe((data: ReviewArray)=>{
+      console.log(data.Items)
+      this.group = this.groupArray(data.Items, 3);
+    });
+  }
   groupArray<ReviewStruct>(data: Array<ReviewStruct>, n: number): Array<ReviewStruct[]> {
     let group = new Array<ReviewStruct[]>();
 ​
@@ -39,6 +67,9 @@ export class DiscoverPageComponent implements OnInit {
     return group;
 }
 getAllReviews() {
-  return this.http.get<Object>(this.apiLink+"/user");
+  return this.http.get<Object>("https://esnih9p6ae.execute-api.us-east-1.amazonaws.com/v1/populatediscover/"+this.user.username);
+}
+searchReviews(searchKey){
+  return this.http.get<Object>("https://esnih9p6ae.execute-api.us-east-1.amazonaws.com/v1/"+searchKey);
 }
 }

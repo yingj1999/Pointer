@@ -14,7 +14,7 @@
 					<header id="header">
 						<div class="d-flex flex-column justify-content-center">
 							<h1>Discover</h1>
-							<input class="inputdefault" type="text" data-test="title-input"  placeholder="Search for a tag!" id="discoverSearch" >
+							<input (keyup.enter)="search()" class="inputdefault" type="text" data-test="title-input"  placeholder="Find something new!" id="discoverSearch" >
 						</div>
 					</header>
 				<!-- Main -->
@@ -26,7 +26,7 @@
 								<div class="d-flex " *ngFor ="let reviewRow of group">
 									<section class="thumbnails">
 									<div class="d-flex flex-row " *ngFor ="let review of reviewRow">
-										<app-list  [currentReview]="review" ></app-list>
+										<app-list (click)="openDialog(review)"  [currentReview]="review" ></app-list>
 									</div>
 								</section>
 								</div>

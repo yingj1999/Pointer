@@ -48,6 +48,7 @@ export class ProfileComponent implements OnInit {
       bypassCache: false
     }).then(async user => {
       this.userName = user.username;
+      console.log(user.username);
       this.getUserInfo().subscribe((data: UserDbObject)=>{
         this.store.dispatch(setCurrentUser({currentUser:data.Item}));
       });
@@ -61,7 +62,7 @@ export class ProfileComponent implements OnInit {
   openDialog(clickedReview:ReviewStruct): void {
     const dialogConfig=new MatDialogConfig();
     const popup=this.dialog.open(PopupComponent, {
-      data: {isNewReview:false},
+      data: {isNewReview:false,readOnly:false},
       panelClass: 'custom-modalbox'
     });
     
@@ -75,7 +76,7 @@ export class ProfileComponent implements OnInit {
   async newReview(){
     const dialogConfig=new MatDialogConfig();
     const popup=this.dialog.open(PopupComponent, {
-      data: {isNewReview:true},
+      data: {isNewReview:true,readOnly:false},
       panelClass: 'custom-modalbox'
     });
     dialogConfig.autoFocus = true;
@@ -118,7 +119,7 @@ export class ProfileComponent implements OnInit {
     return group;
 }
 async addNewReview(newReview:ReviewStruct){
-  const response=await this.http.post<Object>(this.apiLink+"/user/"+(this.user.username)+"/reviews",newReview, this.httpOptions).toPromise();
+  const response=await this.http.post<Object>(this.apiLink+"/user/"+(this.userName)+"/reviews",newReview, this.httpOptions).toPromise();
   return response as ReturnReview;
 }
 }
