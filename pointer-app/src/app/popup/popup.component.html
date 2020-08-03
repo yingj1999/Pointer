@@ -43,8 +43,8 @@
     </div>
   </div>
   <div *ngIf="newReview">
-    <app-upload-picture [currentReview]=currentReview></app-upload-picture>
-    <img class ="ReviewPic" src="../../assets/images/thumbs/01.jpg" alt="" />
+    <app-upload-picture (imageLink)="getImageURL($event)"></app-upload-picture>
+    <img class ="ReviewPic" src="{{imageURL}}" alt="" />
     <div mat-dialog-content>
         <input class="inputdefault" type="text" data-test="title-input"  placeholder="Title" id="titleInput">
         <textarea class="inputdefault" style="resize: none;"   rows="4" cols="50"placeholder="Review" id="descriptionInput"></textarea>

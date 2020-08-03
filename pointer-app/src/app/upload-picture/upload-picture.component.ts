@@ -1,5 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { ReviewStruct } from '../interfaces/review-struct';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import {UploadPictureService} from './uploadPictureService';
 
 @Component({
@@ -8,49 +7,33 @@ import {UploadPictureService} from './uploadPictureService';
   styleUrls: ['./upload-picture.component.css']
 })
 export class UploadPictureComponent implements OnInit {
-  @Input() currentReview: ReviewStruct;
-  public currentReviewCopy: ReviewStruct;
+  @Output() imageLink=new EventEmitter<string>();
+  imageObj: File;
+  imageUrl: string;
   constructor(private uploadPictureService: UploadPictureService,) { }
 
   ngOnInit(): void {
-    this.currentReviewCopy = {
-      reviewId:this.currentReview.reviewId,
-          title:this.currentReview.title,
-          description:this.currentReview.description,
-          image:this.currentReview.image,
-          rating:this.currentReview.rating,
-          tags:this.currentReview.tags
-    };
+    this.emitUpdateImageLink(false);
   }
+  onImagePicked(event: Event): void {
+    const FILE = (event.target as HTMLInputElement).files[0];
+    this.imageObj = FILE;
+   }
 
-  profileImageChangedStatus = 'init';
-  uploadImageLabel = 'Choose file (max size 1MB)';
-  imageFileIsTooBig = false;
-  selectedFileSrc: string;
-
-  changeImage(imageInput: HTMLInputElement) {
-    const file: File = imageInput.files[0];
-    this.uploadImageLabel = `${file.name} (${(file.size * 0.000001).toFixed(2)} MB)`;
-    if (file.size > 1048576) {
-      this.imageFileIsTooBig = true;
-    } else {
-      this.imageFileIsTooBig = false;
-      const reader = new FileReader();
-
-      reader.addEventListener('load', (event: any) => {
-        this.selectedFileSrc = event.target.result;
-        this.uploadPictureService.uploadImage(file).subscribe(
-          (response) => {
-            this.currentReviewCopy.image = response.url;
-          },
-          () => {
-            this.profileImageChangedStatus = 'fail';
-          });
-      });
-
-      if (file) {
-        reader.readAsDataURL(file);
-      }
+   onImageUpload() {
+    const imageForm = new FormData();
+    imageForm.append('image', this.imageObj);
+    this.uploadPictureService.imageUpload(imageForm).subscribe(res => {
+      this.imageUrl = res['image'];
+      this.emitUpdateImageLink(true);
+    });
+   }
+   emitUpdateImageLink(imageUploaded:boolean){
+     if(imageUploaded){
+      this.imageLink.emit("https://pointer-picture-archive.s3.amazonaws.com/"+this.imageUrl);
+     }
+    else{
+      this.imageLink.emit("none")
     }
   }
 }

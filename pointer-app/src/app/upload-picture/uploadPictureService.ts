@@ -1,18 +1,17 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class UploadPictureService {
 
   constructor(private httpClient: HttpClient) {}
 
 
-  public uploadImage(image: File): Observable<any> {
-    const formData = new FormData();
-
-    formData.append('image', image);
-
-    return this.httpClient.post('/api/v1/image-upload', formData);
-
-  }
+  imageUpload(imageForm: FormData) {
+    console.log('image uploading');
+    return this.httpClient.post('http://localhost:3000/api/v1/upload', 
+    imageForm);
+   }
 }

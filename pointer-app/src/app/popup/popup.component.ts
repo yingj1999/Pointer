@@ -29,6 +29,7 @@ export class PopupComponent implements OnInit {
   public newReview:boolean;
   public userReviews: ReviewArray;
   public tagArray:string[];
+  public imageURL:string;
   public readOnly:boolean;
   public isEdit:boolean=false;
   public httpOptions = {
@@ -63,6 +64,7 @@ export class PopupComponent implements OnInit {
           rating:this.currentReview.rating,
           tags:this.currentReview.tags
     };
+    this.imageURL="../../assets/images/thumbs/01.jpg";
   }
 
    saveData(){
@@ -71,7 +73,7 @@ export class PopupComponent implements OnInit {
         reviewId:null,
         title:((document.getElementById("titleInput") as HTMLInputElement).value),
         description:((document.getElementById("descriptionInput") as HTMLInputElement).value),
-        image:null,
+        image:this.imageURL,
         rating:Number(((document.getElementById("ratingInput") as HTMLInputElement).value)),
         tags:this.tagArray
       }
@@ -109,6 +111,13 @@ export class PopupComponent implements OnInit {
   getTagArray($event){
     this.tagArray=$event;
     console.log(this.tagArray);
+  }
+  getImageURL($event){
+    this.imageURL=$event;
+    if (this.imageURL=='none'){
+      this.imageURL="../../assets/images/thumbs/01.jpg";
+    }
+    console.log(this.imageURL);
   }
   updateReviewInDB(currentReviewCopy:ReviewStruct){
     console.log(currentReviewCopy);
