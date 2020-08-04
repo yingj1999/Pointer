@@ -54,7 +54,7 @@ export class ProfileComponent implements OnInit {
       });
       this.getAllReviews().subscribe((data: ReviewArray)=>{
         this.store.dispatch(setCurrentUserReviews({currentUserReviews:data}));
-        this.group = this.groupArray(this.userReviews.Items, 3);
+        this.group = this.groupArray(this.userReviews.Items, Math.ceil(this.userReviews.Items.length/3));
       });
     })
     .catch(err => console.log(err));
@@ -63,21 +63,24 @@ export class ProfileComponent implements OnInit {
     const dialogConfig=new MatDialogConfig();
     const popup=this.dialog.open(PopupComponent, {
       data: {isNewReview:false,readOnly:false},
-      panelClass: 'custom-modalbox'
+      panelClass: 'custom-modalbox',
+      autoFocus: false,
+      maxHeight: document.body.clientHeight 
     });
     
     console.log(clickedReview.tags);
         (<PopupComponent>popup.componentInstance).currentReview = clickedReview;
-    dialogConfig.autoFocus = true;
     popup.afterClosed().subscribe(result => {
-      this.group = this.groupArray(this.userReviews.Items, 3);
+      this.group = this.groupArray(this.userReviews.Items, Math.ceil(this.userReviews.Items.length/3));
     });
   }
   async newReview(){
     const dialogConfig=new MatDialogConfig();
     const popup=this.dialog.open(PopupComponent, {
       data: {isNewReview:true,readOnly:false},
-      panelClass: 'custom-modalbox'
+      panelClass: 'custom-modalbox',
+      autoFocus: false,
+      maxHeight: document.body.clientHeight 
     });
     dialogConfig.autoFocus = true;
     popup.afterClosed().subscribe(async result => {
@@ -88,7 +91,7 @@ export class ProfileComponent implements OnInit {
       userReviewsCopy.push(result.newReview);
       var newReviewArray: ReviewArray={Items:userReviewsCopy};
       this.store.dispatch(setCurrentUserReviews({currentUserReviews:newReviewArray}));
-      this.group = this.groupArray(this.userReviews.Items, 3);
+      this.group = this.groupArray(this.userReviews.Items, Math.ceil(this.userReviews.Items.length/3));
     });
   }
   logOut(){

@@ -8,7 +8,8 @@
     display: block;
     margin-left: auto;
     margin-right: auto;
-    width: 50%;
+    max-width: 30rem;
+    max-height: 21rem;
 }
 .custom-modalbox >  mat-dialog-container {
    

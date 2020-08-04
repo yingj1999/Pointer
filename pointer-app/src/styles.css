@@ -2477,9 +2477,10 @@ a[data-test="sign-out-button"]:hover,
     position: relative;
     margin: 0 0 2em -2em;
     width: 100%;
+    height:100%;
 }
 
-    .thumbnails a {
+    .thumbnails app-list {
         -moz-transition: all 0.2s ease;
         -webkit-transition: all 0.2s ease;
         -ms-transition: all 0.2s ease;
@@ -2497,18 +2498,18 @@ a[data-test="sign-out-button"]:hover,
         overflow: hidden;
     }
 
-        .thumbnails a img {
+        .thumbnails app-list img {
             display: block;
             width: 100%;
             border-top-left-radius: 4px;
             border-top-right-radius: 4px;
         }
 
-        .thumbnails a h3 {
+        .thumbnails app-list h3 {
             margin: 1em;
         }
 
-        .thumbnails a:hover {
+        .thumbnails app-list:hover {
             background-color: rgba(255, 255, 255, 0.25);
             box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.25), 0 0 0.5em 0 #FF6382;
         }
@@ -2524,6 +2525,7 @@ a[data-test="sign-out-button"]:hover,
         flex-direction: column;
         width: calc(100% / 3);
         padding-left: 2em;
+        height:100%;
     }
 
         .thumbnails > div > :last-child {
@@ -2536,7 +2538,7 @@ a[data-test="sign-out-button"]:hover,
             margin: 0 0 2em -1.5em;
         }
 
-            .thumbnails a {
+            .thumbnails app-list {
                 margin: 0 0 1.5em 0;
             }
 
@@ -2560,7 +2562,7 @@ a[data-test="sign-out-button"]:hover,
             display: block;
         }
 
-            .thumbnails a {
+            .thumbnails app-list {
                 margin: 0 0 2em 0 !important;
             }
 
@@ -2720,4 +2722,7 @@ body { margin: 0; font-family: "Source Sans Pro", Helvetica, sans-serif;
     .amplify-form-button{
         margin-top: 1rem;
         border-radius: .2rem;
+    }
+    .mat-dialog-container{
+        min-width: 30rem;
     }

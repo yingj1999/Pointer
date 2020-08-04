@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import {UploadPictureService} from './uploadPictureService';
 
 @Component({
@@ -8,11 +8,13 @@ import {UploadPictureService} from './uploadPictureService';
 })
 export class UploadPictureComponent implements OnInit {
   @Output() imageLink=new EventEmitter<string>();
+  @Input() currentImage:string;
   imageObj: File;
   imageUrl: string;
   constructor(private uploadPictureService: UploadPictureService,) { }
 
   ngOnInit(): void {
+    console.log(this.currentImage);
     this.emitUpdateImageLink(false);
   }
   onImagePicked(event: Event): void {
@@ -32,8 +34,8 @@ export class UploadPictureComponent implements OnInit {
      if(imageUploaded){
       this.imageLink.emit("https://pointer-picture-archive.s3.amazonaws.com/"+this.imageUrl);
      }
-    else{
-      this.imageLink.emit("none")
-    }
+     else{
+       this.imageLink.emit(this.currentImage);
+     }
   }
 }

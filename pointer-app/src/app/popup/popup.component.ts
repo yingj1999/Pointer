@@ -49,6 +49,12 @@ export class PopupComponent implements OnInit {
       this.store.select(currentUserReviews).subscribe((value:ReviewArray)=>{
         this.userReviews=value;
       });
+      if(this.newReview){
+        this.imageURL="../../assets/images/thumbs/01.jpg";
+      }
+      else if(!this.newReview && this.isEdit){
+        this.imageURL=this.currentReviewCopy.image;
+      }
     }
 
   onNoClick(): void {
@@ -64,7 +70,6 @@ export class PopupComponent implements OnInit {
           rating:this.currentReview.rating,
           tags:this.currentReview.tags
     };
-    this.imageURL="../../assets/images/thumbs/01.jpg";
   }
 
    saveData(){
@@ -84,6 +89,7 @@ export class PopupComponent implements OnInit {
       this.currentReviewCopy.rating = Number(((document.getElementById("ratingInput") as HTMLInputElement).value));
       this.currentReviewCopy.description = ((document.getElementById("descriptionInput") as HTMLInputElement).value);
       this.currentReviewCopy.tags=this.tagArray;
+      this.currentReviewCopy.image=this.imageURL;
       this.updateReviewInDB(this.currentReviewCopy).subscribe((data: Object)=>{});
       var userReviewsCopy:ReviewStruct[]= Object.assign([], this.userReviews.Items); 
       userReviewsCopy.forEach( (element) => {
@@ -114,9 +120,6 @@ export class PopupComponent implements OnInit {
   }
   getImageURL($event){
     this.imageURL=$event;
-    if (this.imageURL=='none'){
-      this.imageURL="../../assets/images/thumbs/01.jpg";
-    }
     console.log(this.imageURL);
   }
   updateReviewInDB(currentReviewCopy:ReviewStruct){
@@ -128,6 +131,7 @@ export class PopupComponent implements OnInit {
   }
   clickEdit(){
     this.isEdit=true;
+    this.imageURL=this.currentReviewCopy.image;
   }
  
   

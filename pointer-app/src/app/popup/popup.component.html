@@ -1,5 +1,5 @@
 <div *ngIf="readOnly">
-  <img class ="ReviewPic" src="../../assets/images/thumbs/01.jpg" alt="" />
+  <img class ="ReviewPic" src="{{currentReviewCopy.image}}" alt="" />
       <div mat-dialog-content>
         <input readonly class="inputdefault" type="text" data-test="title-input"  placeholder="Title" id="titleInput"  [(ngModel)]="currentReviewCopy.title">
         <textarea readonly class="inputdefault mb-2" style="resize: none;"   rows="4" cols="50"placeholder="Review" id="descriptionInput" [(ngModel)]="currentReviewCopy.description"></textarea>
@@ -14,7 +14,7 @@
 <div *ngIf="!readOnly">
   <div *ngIf="!newReview">
     <div *ngIf="!isEdit">
-      <img class ="ReviewPic" src="../../assets/images/thumbs/01.jpg" alt="" />
+      <img class ="ReviewPic" src="{{currentReviewCopy.image}}" alt="" />
       <div mat-dialog-content>
         <input readonly class="inputdefault" type="text" data-test="title-input"  placeholder="Title" id="titleInput"  [(ngModel)]="currentReviewCopy.title">
         <textarea readonly class="inputdefault mb-2" style="resize: none;"   rows="4" cols="50"placeholder="Review" id="descriptionInput" [(ngModel)]="currentReviewCopy.description"></textarea>
@@ -28,7 +28,8 @@
       </div>
     </div>
     <div *ngIf="isEdit">
-      <img class ="ReviewPic" src="../../assets/images/thumbs/01.jpg" alt="" />
+      <img class ="ReviewPic" src="{{imageURL}}" alt="" />
+      <app-upload-picture (imageLink)="getImageURL($event)" [currentImage]="imageURL"></app-upload-picture>
       <div mat-dialog-content>
         <input class="inputdefault" type="text" data-test="title-input"  placeholder="Title" id="titleInput"  [(ngModel)]="currentReviewCopy.title">
         <textarea class="inputdefault" style="resize: none;"   rows="4" cols="50"placeholder="Review" id="descriptionInput" [(ngModel)]="currentReviewCopy.description"></textarea>
@@ -43,16 +44,16 @@
     </div>
   </div>
   <div *ngIf="newReview">
-    <app-upload-picture (imageLink)="getImageURL($event)"></app-upload-picture>
     <img class ="ReviewPic" src="{{imageURL}}" alt="" />
-    <div mat-dialog-content>
+    <app-upload-picture (imageLink)="getImageURL($event)" [currentImage]="imageURL"></app-upload-picture>
+    <mat-dialog-content>
         <input class="inputdefault" type="text" data-test="title-input"  placeholder="Title" id="titleInput">
         <textarea class="inputdefault" style="resize: none;"   rows="4" cols="50"placeholder="Review" id="descriptionInput"></textarea>
         <app-tags (tagArray)="getTagArray($event)" [currentTagArray]="[]" [isEdit]=true></app-tags>
         <label class="mt-3" id ="ratingLabel" for="ratingInput" style = "font-size:19px !important;" class="mt-3">Rating:   
         <input class= "ml-1" id="ratingInput" onkeydown="return false;" type="number" style="text-align: center;"  placeholder=0  id ="ratingInput"size='3'min="0" max="10"/></label>
             
-    </div>
+    </mat-dialog-content>
     <div mat-dialog-actions>
       <button mat-button (click)="onNoClick()">Exit</button>
       <button mat-button mat-dialog-close cdkFocusInitial (click)="saveData()">Save</button>
