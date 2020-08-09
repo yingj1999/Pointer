@@ -43,6 +43,7 @@ export class PopupComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data: DialogData,private http:HttpClient, private store:Store<PointerState>) {
       this.store.select(currentUser).subscribe((value:User)=>{
         this.user=value;
+        console.log(this.user.username)
         this.newReview=data.isNewReview;
         this.readOnly=data.readOnly;
       });

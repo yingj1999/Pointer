@@ -48,9 +48,20 @@ export class ProfileComponent implements OnInit {
       bypassCache: false
     }).then(async user => {
       this.userName = user.username;
-      console.log(user.username);
+      console.log(user);
+      const userModel:User={username:user.username,image:""}
       this.getUserInfo().subscribe((data: UserDbObject)=>{
-        this.store.dispatch(setCurrentUser({currentUser:data.Item}));
+        console.log(data)
+        if (Object.keys(data).length === 0) {
+          console.log("No properties")
+          this.setNewUser(userModel).subscribe((data)=>{
+            console.log(data)
+            this.store.dispatch(setCurrentUser({currentUser:userModel}));
+          });
+        }
+        else{
+          this.store.dispatch(setCurrentUser({currentUser:data.Item}));
+        }
       });
       this.getAllReviews().subscribe((data: ReviewArray)=>{
         this.store.dispatch(setCurrentUserReviews({currentUserReviews:data}));
@@ -105,6 +116,9 @@ export class ProfileComponent implements OnInit {
   }
   getUserInfo() {
     return this.http.get<Object>(this.apiLink+"/user/"+this.userName);
+  }
+  setNewUser(userModel){
+      return this.http.post<Object>(this.apiLink+"/user",userModel, this.httpOptions)
   }
   getAllReviews() {
     return this.http.get<Object>(this.apiLink+"/user/"+(this.userName)+"/reviews");

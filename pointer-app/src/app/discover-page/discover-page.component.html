@@ -20,16 +20,17 @@
 				<!-- Main -->
 					<section id="main">
 						<div class="d-flex flex-column justify-content-center ">
-							
-							<div class="d-flex flex-column justify-content-center">
-								
-								<div class="d-flex " *ngFor ="let reviewRow of group">
-									<section class="thumbnails">
-									<div class="d-flex flex-row " *ngFor ="let review of reviewRow">
-										<app-list (click)="openDialog(review)"  [currentReview]="review" ></app-list>
+					
+							<div class="d-flex justify-content-center">
+								<section class="thumbnails">
+								<div class="d-flex flex-column" *ngFor ="let reviewRow of group">
+									
+									<div>
+										<app-list *ngFor ="let review of reviewRow" (click)="openDialog(review)"  [currentReview]="review" ></app-list>
 									</div>
-								</section>
+								
 								</div>
+							</section>
 							</div>
 					</div>
 					</section>

@@ -28,7 +28,7 @@ export class UploadPictureComponent implements OnInit {
     this.uploadPictureService.imageUpload(imageForm).subscribe(res => {
       this.imageUrl = res['image'];
       this.emitUpdateImageLink(true);
-    });
+    },error => {console.log('oops', error)});
    }
    emitUpdateImageLink(imageUploaded:boolean){
      if(imageUploaded){
