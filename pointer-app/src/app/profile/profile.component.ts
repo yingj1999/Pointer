@@ -12,6 +12,7 @@ import {PointerState} from '../store/interface';
 import {currentUser,currentUserReviews} from '../store/selectors';
 import{setCurrentUser,setCurrentUserReviews} from '../store/actions';
 import {HttpClient,HttpHeaders} from "@angular/common/http";
+import { ProfilePopupComponent } from '../profile-popup/profile-popup.component';
 interface ReturnReview{
   body:string;
   headers:Object;
@@ -48,14 +49,10 @@ export class ProfileComponent implements OnInit {
       bypassCache: false
     }).then(async user => {
       this.userName = user.username;
-      console.log(user);
-      const userModel:User={username:user.username,image:""}
+      const userModel:User={username:user.username,image:"../../assets/images/avatar.jpg"}
       this.getUserInfo().subscribe((data: UserDbObject)=>{
-        console.log(data)
         if (Object.keys(data).length === 0) {
-          console.log("No properties")
           this.setNewUser(userModel).subscribe((data)=>{
-            console.log(data)
             this.store.dispatch(setCurrentUser({currentUser:userModel}));
           });
         }
@@ -70,6 +67,14 @@ export class ProfileComponent implements OnInit {
     })
     .catch(err => console.log(err));
   }
+  openProfilePopup(){
+    const dialogConfig=new MatDialogConfig();
+    const popup=this.dialog.open(ProfilePopupComponent, {
+      panelClass: 'custom-modalbox',
+      autoFocus: false,
+      maxHeight: document.body.clientHeight 
+    });
+  }
   openDialog(clickedReview:ReviewStruct): void {
     const dialogConfig=new MatDialogConfig();
     const popup=this.dialog.open(PopupComponent, {
@@ -78,8 +83,6 @@ export class ProfileComponent implements OnInit {
       autoFocus: false,
       maxHeight: document.body.clientHeight 
     });
-    
-    console.log(clickedReview.tags);
         (<PopupComponent>popup.componentInstance).currentReview = clickedReview;
     popup.afterClosed().subscribe(result => {
       this.group = this.groupArray(this.userReviews.Items, Math.ceil(this.userReviews.Items.length/3));

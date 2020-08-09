@@ -14,7 +14,6 @@ export class UploadPictureComponent implements OnInit {
   constructor(private uploadPictureService: UploadPictureService,) { }
 
   ngOnInit(): void {
-    console.log(this.currentImage);
     this.emitUpdateImageLink(false);
   }
   onImagePicked(event: Event): void {

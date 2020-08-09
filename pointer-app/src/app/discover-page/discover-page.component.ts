@@ -26,12 +26,10 @@ export class DiscoverPageComponent implements OnInit {
 
   ngOnInit(): void {
     this.getAllReviews().subscribe((data: ReviewArray)=>{
-      console.log(data.Items)
-      this.group = this.groupArray(data.Items, 3);
+      this.group = this.groupArray(data.Items, Math.ceil(data.Items.length/3));
     });
   }
   onHomeClick(){
-    console.log("going home")
     this.router.navigate(['/home']);
   }
   onProfileClick(){
@@ -44,14 +42,12 @@ export class DiscoverPageComponent implements OnInit {
       panelClass: 'custom-modalbox'
     });
     
-    console.log(clickedReview.tags);
         (<PopupComponent>popup.componentInstance).currentReview = clickedReview;
     dialogConfig.autoFocus = true;
   }
   search(){
     this.searchReviews(((document.getElementById("discoverSearch") as HTMLInputElement).value)).subscribe((data: ReviewArray)=>{
-      console.log(data.Items)
-      this.group = this.groupArray(data.Items, 3);
+      this.group = this.groupArray(data.Items, Math.ceil(data.Items.length/3));
     });
   }
   groupArray<ReviewStruct>(data: Array<ReviewStruct>, n: number): Array<ReviewStruct[]> {

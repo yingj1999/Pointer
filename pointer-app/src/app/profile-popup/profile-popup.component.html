@@ -1,0 +1,6 @@
+<img class ="ReviewPic" src="{{imageURL}}" alt="" />
+      <app-upload-picture (imageLink)="getImageURL($event)" [currentImage]="imageURL"></app-upload-picture>
+      <div mat-dialog-actions>
+        <button mat-button (click)="onNoClick()">Exit</button>
+        <button mat-button  cdkFocusInitial (click)="saveData()">Save</button>
+      </div>

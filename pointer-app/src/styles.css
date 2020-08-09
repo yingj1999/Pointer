@@ -2639,7 +2639,8 @@ body.is-covered #wrapper {
         #header .avatar img {
             border-radius: 100%;
             display: block;
-            width: 10em;
+            max-width: 11rem;
+            max-height: 11rem;
         }
         .upperLeftLogo{
             border-radius: 100%;

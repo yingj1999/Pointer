@@ -13,7 +13,6 @@ export class ListComponent implements OnInit {
   constructor(private http:HttpClient) { }
 
   ngOnInit(): void {
-    console.log(this.currentReview);
   }
 
 }

@@ -15,6 +15,7 @@ import{PointerStoreModule} from './store/store.module';
 import { TagsComponent } from './tags/tags.component';
 import { UploadPictureComponent } from './upload-picture/upload-picture.component';
 import { DiscoverPageComponent } from './discover-page/discover-page.component';
+import { ProfilePopupComponent } from './profile-popup/profile-popup.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { DiscoverPageComponent } from './discover-page/discover-page.component';
     PopupComponent,
     TagsComponent,
     DiscoverPageComponent,
-    UploadPictureComponent
+    UploadPictureComponent,
+    ProfilePopupComponent
   ],
   entryComponents: [
     PopupComponent

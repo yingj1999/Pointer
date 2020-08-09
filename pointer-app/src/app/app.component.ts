@@ -17,7 +17,6 @@ export class AppComponent {
     this.amplifyService.authStateChange$
       .subscribe(authState => {
         if (authState.state === 'signedIn' && !this.onDiscoverPage) {
-          console.log("two")
           this.router.navigate(['/profile']);
           this.signInStatus=true;
         }
@@ -25,11 +24,14 @@ export class AppComponent {
           this.router.navigate(['/login']);
           this.signInStatus=false;
         }
+        else if(authState.state === 'signedIn' && this.onDiscoverPage){
+          this.router.navigate(['/home']);
+          this.signInStatus=true;
+        }
       });
   }
   
   onHomeClick(){
-    console.log("going home")
     this.onDiscoverPage=true;
     this.router.navigate(['/home']);
   }

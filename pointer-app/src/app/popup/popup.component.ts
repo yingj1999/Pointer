@@ -43,7 +43,6 @@ export class PopupComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data: DialogData,private http:HttpClient, private store:Store<PointerState>) {
       this.store.select(currentUser).subscribe((value:User)=>{
         this.user=value;
-        console.log(this.user.username)
         this.newReview=data.isNewReview;
         this.readOnly=data.readOnly;
       });
@@ -110,21 +109,17 @@ export class PopupComponent implements OnInit {
         }
     });
       var data: ReviewArray={Items:userReviewsCopy};
-      console.log(data);
       this.store.dispatch(setCurrentUserReviews({currentUserReviews:data}));
       this.isEdit=false;
     }
   }
   getTagArray($event){
     this.tagArray=$event;
-    console.log(this.tagArray);
   }
   getImageURL($event){
     this.imageURL=$event;
-    console.log(this.imageURL);
   }
   updateReviewInDB(currentReviewCopy:ReviewStruct){
-    console.log(currentReviewCopy);
     return this.http.put<Object>(this.apiLink+"/user/"+this.user.username+"/reviews/"+currentReviewCopy.reviewId,currentReviewCopy, this.httpOptions);
   }
   getAllReviews() {
