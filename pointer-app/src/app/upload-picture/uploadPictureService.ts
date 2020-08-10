@@ -9,9 +9,9 @@ export class UploadPictureService {
   constructor(private httpClient: HttpClient) {}
 
 
-  imageUpload(imageForm: FormData) {
+  imageUpload(imageForm: any) {
     console.log('image uploading');
-    return this.httpClient.post('http://localhost:3000/api/v1/upload', 
-    imageForm);
+    return this.httpClient.post('https://esnih9p6ae.execute-api.us-east-1.amazonaws.com/v1/upload-to-s3', imageForm);
+    
    }
 }

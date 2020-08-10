@@ -21,14 +21,22 @@ export class UploadPictureComponent implements OnInit {
     this.imageObj = FILE;
    }
 
-   onImageUpload() {
-    const imageForm = new FormData();
-    imageForm.append('image', this.imageObj);
-    this.uploadPictureService.imageUpload(imageForm).subscribe(res => {
-      this.imageUrl = res['image'];
+   async onImageUpload() {
+    const imageData={
+      name:Date.now() + this.imageObj.name,
+      file:await this.toBase64(this.imageObj)
+    }
+    this.uploadPictureService.imageUpload(imageData).subscribe(res =>{
+      this.imageUrl = imageData.name;
       this.emitUpdateImageLink(true);
     },error => {console.log('oops', error)});
    }
+   toBase64 = file => new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => resolve(reader.result);
+    reader.onerror = error => reject(error);
+});
    emitUpdateImageLink(imageUploaded:boolean){
      if(imageUploaded){
       this.imageLink.emit("https://pointer-picture-archive.s3.amazonaws.com/"+this.imageUrl);
