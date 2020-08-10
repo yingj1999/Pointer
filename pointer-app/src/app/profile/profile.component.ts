@@ -1,9 +1,11 @@
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
+import Amplify from 'aws-amplify';
 import {MatDialog, MatDialogConfig} from '@angular/material/dialog';
 import {PopupComponent} from '../popup/popup.component';
 import {Auth} from 'aws-amplify';
 import {Router} from '@angular/router';
 import {User,UserDbObject} from '../interfaces/user'
+import aws_exports from '../../aws-exports';
 import {ReviewStruct,ReviewArray} from '../interfaces/review-struct';
 import {Store} from '@ngrx/store';
 import {PointerState} from '../store/interface';
@@ -16,6 +18,7 @@ interface ReturnReview{
   headers:Object;
   statusCode:Number;
 }
+Amplify.configure(aws_exports);
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
