@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve pointer-app --disable-host-check",
+    "start": "ng serve pointer-app --host 0.0.0.0 --disable-host-check",
     "build": "node --max_old_space_size=8192 node_modules/@angular/cli/bin/ng build --prod",
     "test": "ng test",
     "lint": "ng lint",
